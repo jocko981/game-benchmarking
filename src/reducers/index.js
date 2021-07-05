@@ -1,12 +1,11 @@
+import { combineReducers } from "redux";
+import { reducer as formReducer } from "redux-form";
+import gameReducer from "./gameReducer";
+import authReducer from "./authReducer";
 
-const rootReducer = (state = [], action) => {
-    switch (action.type) {
-        case "FETCH_LIST":
-            return action.payload;
-
-        default:
-            return state;
-    }
-};
-
-export default rootReducer;
+export default combineReducers({ 
+    auth: authReducer,
+    form: formReducer,
+    games: gameReducer
+    // i ovde users
+});

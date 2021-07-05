@@ -2,11 +2,18 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
 
-const LoginPage = (props) => {
-    const [loginValue, setLoginValue] = useState({ username: "", password: "" });
-    const [errorMsg, setErrorMsg] = useState("");
+class LoginPage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {date: new Date()};
+        // this.value = {gg: "gg"}
+        // console.log(this.value.gg)
 
-    const handleChange = (event) => {
+        const [loginValue, setLoginValue] = useState({ username: "", password: "" });
+        const [errorMsg, setErrorMsg] = useState("");
+      }
+
+    handleChange = (event) => {
         const { name, value } = event.target;
     
         setLoginValue((prevValue) => {
@@ -17,19 +24,22 @@ const LoginPage = (props) => {
         });
     }
 
-    const onLoginSubmit = (e) => {
+    onLoginSubmit = (e) => {
         e.preventDefault();
+        
+        const allUsers = JSON.parse(localStorage.getItem('allUsers'));
 
-        // allUsers.users.filter((user) => {
-        //     if(loginValue.username === user.username && loginValue.password === user.password) {
-        //         props.history.push("/dashboard")
-
-        // if (user.admin === true) => push to /admin else push to /user
-
-        //     }
-        //     setErrorMsg("This account does not exist, please try again.")
-        //     return null
-        // });
+        allUsers.filter((userData) => {
+            if(loginValue.username === userData.name && loginValue.password === userData.password) {
+                // if (user.admin === true) => push to /admin else push to /user
+                if(userData.role === "admin") {
+                    props.history.push("/admin")
+                } else
+                props.history.push("/user")
+            }
+            setErrorMsg("This account does not exist, please try again.")
+            return null
+        });
         
         if(loginValue.username.length < 1 && loginValue.password.length < 1) {
             setErrorMsg("Please type your Username and Password to login.");
@@ -39,10 +49,17 @@ const LoginPage = (props) => {
             setErrorMsg("Please enter Password.");
         }
         
-    }
 
+        console.log(allUsers, 'loging')
+    }
+    render() {
+        
     return (
         <div className="container-wrapper">
+
+        <div className="header">
+            <h1>Game Benchmarking</h1>
+        </div>
 
         <div className="container">
             <h2>Login</h2>
@@ -74,6 +91,7 @@ const LoginPage = (props) => {
 
         </div>
     );
+    }
 }
 
 export default LoginPage;
