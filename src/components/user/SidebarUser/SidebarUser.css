@@ -1,0 +1,32 @@
+
+.sidebar-user {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: #0dccbe;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0px;
+}
+.sidebar-user a {
+    cursor: pointer;
+    padding: 10px 30px;
+    color: #ffffff;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+}
+.sidebar-user a:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-left: 3px solid #ffffff;
+}
+.active {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-left: 3px solid #ffffff;
+}
+
+.sidebar-user h1 {
+    color: black;
+}
