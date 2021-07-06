@@ -15,14 +15,17 @@ export const fetchGames = () => async (dispatch) => {
     const response = localStorage.getItem('allGames');
 
     dispatch({ type: FETCH_GAMES, payload: JSON.parse(response) });
+
     console.log(JSON.parse(response), "[fetchGames action call Response]")
 };
 
 export const fetchGame = (id) => async (dispatch) => {
     const response = localStorage.getItem('allGames');
+    const data = JSON.parse(response).filter(item => item.ID == id)[0]
 
-    dispatch({ type: FETCH_GAMES, payload: JSON.parse(response) });
-    console.log(JSON.parse(response))
+    dispatch({ type: FETCH_GAME, payload: data });
+
+    console.log(JSON.parse(response)[id], '[fetchGAME action]', data)
 };
 
 

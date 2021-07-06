@@ -29,4 +29,6 @@
 
 .sidebar-user h1 {
     color: black;
+    padding: 10px 30px;
+    cursor: context-menu;
 }

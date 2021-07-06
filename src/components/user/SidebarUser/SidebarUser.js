@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import "./SidebarUser.css";
 
 const SidebarUser = () => {
-    const [active, setActive] = useState([0, 0, 0, 0, 0]);
+    const [active, setActive] = useState([1, 0, 0, 0, 0]);
     
     return (
         <div className="sidebar-user">
-            <Link to="/user" onClick={() => setActive([0,0,0,0,0])}><h1>USER</h1></Link>
+            <h1>USER</h1>
             
             <Link to="/user/dashboard" onClick={() => setActive([1,0,0,0,0])} className={active[0] && 'active'}><span>Dashboard</span></Link>
             <Link to="/user/benchmark" onClick={() => setActive([0,1,0,0,0])} className={active[1] && 'active'}><span>Benchmark</span></Link>

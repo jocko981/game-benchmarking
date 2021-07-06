@@ -12,7 +12,6 @@ import Search from "../components/user/Search/Search";
 import Donate from "../components/user/Donate/Donate";
 // admin pages
 import SidebarAdmin from "../components/admin/SidebarAdmin/SidebarAdmin";
-import AdminPage from "../components/admin/AdminPage/AdminPage";
 import GameList from "../components/admin/Games/GameList";
 import GameShow from "../components/admin/Games/GameShow";
 //
@@ -38,7 +37,7 @@ const App = () => {
       "num_of_players_2015": 900000, "num_of_players_2016": 900000, "num_of_players_2017": 900000, "num_of_players_2018": 900000, "num_of_players_2019": 900000, "num_of_players_2020": 900000,
       "year_published": 2011, "platform": "steam", "violence": 0, "won_award": 1, "single_player": 1},
     
-      { "name": "League of Legends", "ID": 5, "num_of_players_favourite": 1000, "price": 50, "type": "MOBA", "num_of_players_global": 1000000, "rating": 7.7, 
+      { "name": "League of Legends", "ID": 7, "num_of_players_favourite": 1000, "price": 50, "type": "MOBA", "num_of_players_global": 1000000, "rating": 7.7, 
       "num_of_players_2015": 900000, "num_of_players_2016": 900000, "num_of_players_2017": 900000, "num_of_players_2018": 900000, "num_of_players_2019": 900000, "num_of_players_2020": 900000,
       "year_published": 2011, "platform": "steam", "violence": 0, "won_award": 1, "single_player": 0}]`
     );
@@ -77,6 +76,7 @@ const App = () => {
           <Route exact path="/login" component={LoginPage}></Route>
 
           <Route path="/user">
+            <Redirect to="/user/dashboard" />
             <Route exact component={SidebarUser} />
             <Route exact path="/user/dashboard" component={Dashboard} />
             <Route exact path="/user/benchmark" component={Benchmark} />
@@ -87,13 +87,13 @@ const App = () => {
           </Route>
 
           <Route path="/admin" component={SidebarAdmin}>
+            <Redirect to="/admin/games" />
             <Route exact component={SidebarAdmin} />
             <Route exact path="/admin/users/delete/:id" component='edit this users' />
             <Route exact path="/admin/users/edit/:id" component='edit this users' />
             <Route exact path="/admin/users/:id" component='edit this users' />
             <Route exact path="/admin/users/new" component='edit this users' />
             <Route exact path="/admin/users" component={Users} />
-            <Route exact path="/admin" component={AdminPage} />
             
             <Route exact path="/admin/games/delete/:id" component='edit this games' />
             <Route exact path="/admin/games/edit/:id" component='edit this games' />

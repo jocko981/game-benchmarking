@@ -12,6 +12,9 @@ export default (state = {}, action) => {
         case FETCH_GAMES:
             return { ...state, ..._.mapKeys(action.payload, "ID") };
 
+        case FETCH_GAME:
+            return { ...state, [action.payload.ID]: action.payload };
+
         default:
             return state;
     }

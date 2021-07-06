@@ -18,8 +18,11 @@ class GameList extends React.Component {
                     {/* Ovde render EDIT/DELETE adminu */}
 
                     <i className="large middle aligned icon gamepad" />
+
                     <div className="content">
+
                         <Link to={`/admin/games/${game.ID}`}>{game.name}</Link>
+
                         <div className="description">
                             Rating: {game.rating}
                         </div>
@@ -33,12 +36,14 @@ class GameList extends React.Component {
     renderAdminEdit(game) {
             return (
                 <div className="right floated content">
+
                     <Link to={`/admin/games/edit/${game.ID}`} className="ui button primary">
                         Edit
                     </Link>
                     <Link to={`/admin/games/delete/${game.ID}`} className="ui button negative">
                         Delete
                     </Link>
+                    
                 </div>
             );
     }
@@ -59,7 +64,7 @@ class GameList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state, '[mapStateToProps - Gamelist.js]')
+    // console.log(state, '[mapStateToProps - Gamelist.js]')
     return { 
         games: Object.values(state.games),
         // currentUserId: state.auth.userId,

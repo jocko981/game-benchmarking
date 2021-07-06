@@ -2,18 +2,11 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
 
-class LoginPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {date: new Date()};
-        // this.value = {gg: "gg"}
-        // console.log(this.value.gg)
+const LoginPage = (props) => {
+    const [loginValue, setLoginValue] = useState({ username: "", password: "" });
+    const [errorMsg, setErrorMsg] = useState("");
 
-        const [loginValue, setLoginValue] = useState({ username: "", password: "" });
-        const [errorMsg, setErrorMsg] = useState("");
-      }
-
-    handleChange = (event) => {
+    const handleChange = (event) => {
         const { name, value } = event.target;
     
         setLoginValue((prevValue) => {
@@ -24,7 +17,7 @@ class LoginPage extends React.Component {
         });
     }
 
-    onLoginSubmit = (e) => {
+    const onLoginSubmit = (e) => {
         e.preventDefault();
         
         const allUsers = JSON.parse(localStorage.getItem('allUsers'));
@@ -52,7 +45,6 @@ class LoginPage extends React.Component {
 
         console.log(allUsers, 'loging')
     }
-    render() {
         
     return (
         <div className="container-wrapper">
@@ -91,7 +83,7 @@ class LoginPage extends React.Component {
 
         </div>
     );
-    }
+    
 }
 
 export default LoginPage;
