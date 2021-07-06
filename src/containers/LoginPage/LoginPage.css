@@ -3,13 +3,13 @@
     margin: auto;
 }
 
-.header {
+.container-wrapper .header {
     text-align: center;
     background-color: brown;
     padding: 1%;
     margin: 3%;
 }
-.header h1 {
+.container-wrapper .header h1 {
     font-style: italic;
 }
 

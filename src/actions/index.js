@@ -25,7 +25,7 @@ export const fetchGame = (id) => async (dispatch) => {
 
     dispatch({ type: FETCH_GAME, payload: data });
 
-    console.log(JSON.parse(response)[id], '[fetchGAME action]', data)
+    console.log(data, '[fetchGAME action]')
 };
 
 
