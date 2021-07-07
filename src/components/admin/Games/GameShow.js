@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { fetchGame } from "../../../actions";
+import { fetchOneGame } from "../../../actions";
 import GamePdf from "./GamePdf";
 
 class GameShow extends React.Component {
 
     componentDidMount() {
         const { id } = this.props.match.params;
-        this.props.fetchGame(id);
+        this.props.fetchOneGame(id);
     }
 
     render() {
@@ -40,9 +40,6 @@ class GameShow extends React.Component {
 
         return (
             <div className="content-page-wrapper">
-            {console.log(this.props.game, '[game]')}
-
-
                 <table className="ui unstackable table">
                   <thead>
                     <tr>
@@ -126,9 +123,13 @@ class GameShow extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state.games, '[mapStateToProps - GameShow.js]', ownProps, '[ownProps]')
+    console.log(state, 'redux state console.log in GameShow')
+    console.log(Object.values(state.games), 'ObjValues state GameShow')
+    console.log(state.games, '[mapStateToProps - GameShow.js]')
+    console.log(ownProps, '[ownProps]')
 
     return { game: Object.values(state.games).filter(item => item.ID == ownProps.match.params.id)[0] };
+    // .filter pravi nov array, i kada trazimo ownProps==ID onda ostaje samo 1 item("game") u array [{game}] i zato [0] na kraju, i imamo {game}
 }
 
-export default connect(mapStateToProps, { fetchGame })(GameShow);
+export default connect(mapStateToProps, { fetchOneGame })(GameShow);

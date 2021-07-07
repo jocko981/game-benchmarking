@@ -1,7 +1,7 @@
 import _ from "lodash";
 import {
     FETCH_GAMES,
-    FETCH_GAME,
+    FETCH_ONE_GAME,
     CREATE_GAME,
     DELETE_GAME,
     EDIT_GAME
@@ -12,7 +12,7 @@ export default (state = {}, action) => {
         case FETCH_GAMES:
             return { ...state, ..._.mapKeys(action.payload, "ID") };
 
-        case FETCH_GAME:
+        case FETCH_ONE_GAME:
             return { ...state, [action.payload.ID]: action.payload };
 
         default:
