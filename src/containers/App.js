@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect, Router } from "react-router-dom";
+import history from "../history";
 
 import LoginPage from "./LoginPage/LoginPage";
 // user pages
@@ -14,6 +15,9 @@ import Donate from "../components/user/Donate/Donate";
 import SidebarAdmin from "../components/admin/SidebarAdmin/SidebarAdmin";
 import GameList from "../components/admin/Games/GameList";
 import GameShow from "../components/admin/Games/GameShow";
+import GameDelete from "../components/admin/Games/GameDelete";
+import GameEdit from "../components/admin/Games/GameEdit";
+import GameCreate from "../components/admin/Games/GameCreate";
 //
 import Users from "../components/admin/Users/Users";
 
@@ -41,19 +45,6 @@ const App = () => {
       "num_of_players_2015": 900000, "num_of_players_2016": 900000, "num_of_players_2017": 900000, "num_of_players_2018": 900000, "num_of_players_2019": 900000, "num_of_players_2020": 900000,
       "year_published": 2011, "platform": "steam", "violence": 0, "won_award": 1, "single_player": 0}]`
     );
-    
-    // const allUsers = localStorage.getItem('allUsers');
-    // console.log(allUsers, '----> ALL USERS local storage')
-    // console.log(JSON.parse(allUsers), '----> ALL USERS JSON.parse')
-
-    // const allGames = localStorage.getItem('allGames');
-    // console.log(JSON.parse(allGames), '----> ALL GAMES JSON.parse')
-
-    // const usersArr = JSON.parse(localStorage.getItem('allUsers'))
-    // usersArr.push({ "id": 10, "name": "admin123", "password": "admin123" })
-    
-    // console.log( JSON.parse(localStorage.getItem('allUsers')) )
-    // console.log(usersArr, 'usersArr')
 
   }, [])
 
@@ -67,7 +58,7 @@ const App = () => {
 
   return (
     <div>
-      <BrowserRouter>
+      <Router history={history}>
         <Switch>
           <Route exact path="/">
             <Redirect to="/login" />
@@ -95,16 +86,16 @@ const App = () => {
             <Route exact path="/admin/users/new" component='edit this users' />
             <Route exact path="/admin/users" component={Users} />
             
-            <Route exact path="/admin/games/delete/:id" component='edit this games' />
-            <Route exact path="/admin/games/edit/:id" component='edit this games' />
+            <Route exact path="/admin/games/delete/:id" component={GameDelete} />
+            <Route exact path="/admin/games/edit/:id" component={GameEdit} />
             <Route exact path="/admin/games/:id" component={GameShow} />
-            <Route exact path="/admin/games/new" component='edit this games' />
+            <Route exact path="/admin/games/new" component={GameCreate} />
             <Route exact path="/admin/games" component={GameList} />
 
             {/* <Redirect> da se force navigira ?? */}
           </Route>
         </Switch>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }

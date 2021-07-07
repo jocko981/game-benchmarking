@@ -64,27 +64,34 @@ const GamePdf = () => {
                 <i className="pdf file outline icon" />
             </div> */}
 
-        <form className="ui icon header" onSubmit={handlePdfFileSubmit}>
-            <i className="pdf file outline icon" />
+            <form className="ui icon header" onSubmit={handlePdfFileSubmit}>
 
-            <input type="file" required onChange={handlePdfFileChange} />
-                {pdfFileError}
+                <i className="pdf file outline icon" />
 
-            <button type="submit" className="ui primary button">Preview PDF Document</button>
-        </form>
+                <input type="file" required onChange={handlePdfFileChange} />
+                    {pdfFileError}
 
+                <button type="submit" className="ui primary button">Preview PDF Document</button>
+
+                {/* if we dont have pdf or viewPdf state is null */}
+                {!viewPdf && <> No pdf file selected to preview </>}
+
+            </form>
         
-      <div className='pdf-container'>
-        {/* show pdf conditionally (if we have one)  */}
-        {viewPdf&&<><Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
-          <Viewer fileUrl={viewPdf}
-            plugins={[defaultLayoutPluginInstance]} />
-      </Worker></>}
+            <div className='pdf-container'>
+              {/* show pdf conditionally (if we have one)  */}
+              {viewPdf && <> 
+                <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
+                  <Viewer 
+                    fileUrl={viewPdf}
+                    plugins={[defaultLayoutPluginInstance]} 
+                  />
+                  </Worker>
+                </>}
 
-      {/* if we dont have pdf or viewPdf state is null */}
-      {!viewPdf&&<>No pdf file selected</>}
-      </div>
-
+              {/* if we dont have pdf or viewPdf state is null */}
+              {!viewPdf && <> No pdf file selected for preview</>}
+            </div>
 
         </div>
     );

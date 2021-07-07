@@ -1,7 +1,6 @@
 
 /* My global CSS */
 .content-page-wrapper {
-    padding-left: 230px;
-    padding-top: 1%;
-    padding-bottom: 2%;
+    /* top - right - bottom - left */
+    padding: 1% 1% 2% 230px;
 }
