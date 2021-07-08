@@ -11,7 +11,7 @@ class GameShow extends React.Component {
     }
 
     render() {
-        if(!this.props.game) {
+        if(!this.props.game || this.props.game == undefined) {
             return (
               <div className="content-page-wrapper">
                   <div className="ui segment">
@@ -126,10 +126,10 @@ class GameShow extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state, 'redux state console.log in GameShow')
-    console.log(Object.values(state.games), 'ObjValues state GameShow')
-    console.log(state.games, '[mapStateToProps - GameShow.js]')
-    console.log(ownProps, '[ownProps]')
+    // console.log(state, 'redux state console.log in GameShow')
+    // console.log(Object.values(state.games), 'ObjValues state GameShow')
+    // console.log(state.games, '[mapStateToProps - GameShow.js]')
+    // console.log(ownProps, '[ownProps]')
 
     return { game: Object.values(state.games)
       .filter(item => item.ID.toString() === ownProps.match.params.id)[0] };

@@ -1,12 +1,14 @@
+
 import _ from "lodash";
 import {
     FETCH_ALL_GAMES,
     FETCH_GAME,
     DELETE_GAME,
-    CREATE_GAME,
-    EDIT_GAME
+    EDIT_GAME,
+    CREATE_GAME
 } from "../actions";
 
+// using _lodash
 export default (state = {}, action) => {
     switch(action.type) {
         case FETCH_ALL_GAMES:

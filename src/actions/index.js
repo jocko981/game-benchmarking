@@ -16,7 +16,7 @@ export const fetchAllGames = () => async (dispatch) => {
     const data = JSON.parse(response);
 
     dispatch({ type: FETCH_ALL_GAMES, payload: data });
-    console.log(data, '[fetch_ALL_GAMES action]');
+    // console.log(data, '[fetch_ALL_GAMES action]');
 };
 
 export const fetchGame = (id) => async (dispatch) => {
@@ -29,8 +29,8 @@ export const fetchGame = (id) => async (dispatch) => {
 
 export const deleteGame = (id) => async (dispatch) => {
     const response = localStorage.getItem('allGames');
-    const dataAfterDelete = JSON.parse(response).filter(item => item.ID.toString() !== id);
-    const data = JSON.stringify(dataAfterDelete);
+    const dataAfterDeletingGame = JSON.parse(response).filter(item => item.ID.toString() !== id);
+    const data = JSON.stringify(dataAfterDeletingGame);
 
     localStorage.setItem('allGames', data)
 
