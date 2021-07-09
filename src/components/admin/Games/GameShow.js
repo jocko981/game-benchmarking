@@ -11,7 +11,9 @@ class GameShow extends React.Component {
     }
 
     render() {
-        if(!this.props.game || this.props.game == undefined) {
+      console.log(!this.props.game)
+      // this.props.game = undefined, !this.props.game = true
+        if(!this.props.game) {
             return (
               <div className="content-page-wrapper">
                   <div className="ui segment">
@@ -126,14 +128,9 @@ class GameShow extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    // console.log(state, 'redux state console.log in GameShow')
-    // console.log(Object.values(state.games), 'ObjValues state GameShow')
-    // console.log(state.games, '[mapStateToProps - GameShow.js]')
-    // console.log(ownProps, '[ownProps]')
 
     return { game: Object.values(state.games)
-      .filter(item => item.ID.toString() === ownProps.match.params.id)[0] };
-    // .filter pravi nov array, i kada trazimo ownProps==ID onda ostaje samo 1 item("game") u array [{game}] i zato [0] na kraju, i imamo {game}
+      .find(item => item.ID.toString() === ownProps.match.params.id) };
 }
 
 export default connect(mapStateToProps, { fetchGame })(GameShow);

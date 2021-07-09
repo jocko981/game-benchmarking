@@ -19,6 +19,11 @@ export default (state = {}, action) => {
             
         case DELETE_GAME:
             return _.omit(state, action.payload);
+            // The _.omit() function is used to return a copy of the object that filtered to omit the blacklisted keys. 
+            // _.omit(object, *keys)  
+            // 'object': This parameter holds the value of an object. 
+            // 'keys': It is an optional parameter. It contains the key name that value need to be omitted.
+            // Return Value: It returns a copy of the object that filtered to omit the blacklisted keys.
             
         case EDIT_GAME:
             return { ...state, [action.payload.ID]: action.payload };

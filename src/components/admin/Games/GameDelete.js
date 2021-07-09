@@ -52,12 +52,10 @@ class GameDelete extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state.games, 'toProps')
 
     return { game: Object.values(state.games)
-        .filter(item => item.ID.toString() === ownProps.match.params.id)[0] };
+        .find(item => item.ID.toString() === ownProps.match.params.id) };
     // [item.ID] je Number, a [ownProps.match.params.id] je po sebi String
-    // .filter pravi nov array, i kada trazimo ownProps==ID onda ostaje samo 1 item("game") u array [{game}] i zato [0] na kraju, i imamo {game}
 }
 
 export default connect(mapStateToProps, { fetchGame, deleteGame })(GameDelete);

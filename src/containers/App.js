@@ -67,15 +67,18 @@ const App = () => {
             
             <Route exact path="/admin/games/delete/:id" component={GameDelete} />
             <Route exact path="/admin/games/edit/:id" component={GameEdit} />
-            <Route exact path="/admin/games/:id" component={GameShow} />
-            <Route exact path="/admin/games/new" component={GameCreate} />
+            {/* <Route exact path="/admin/games/:id" component={GameShow} /> */}
+            {/* <Route exact path="/admin/games/new" component={GameCreate} /> */}
             {/* <Route exact path="/admin/games" component={GameList} /> */}
           </Route>
         </Switch>
 
         <Switch>
           <Redirect exact from="/admin" to="/admin/games" />
-          <Route path="/admin/games" component={GameList} />
+          
+          <Route exact path="/admin/games/new" component={GameCreate} />
+          <Route exact path="/admin/games/:id" component={GameShow} />
+          <Route exact path="/admin/games" component={GameList} />
         </Switch>
         
       </Router>

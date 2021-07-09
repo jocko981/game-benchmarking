@@ -21,7 +21,13 @@ export const fetchAllGames = () => async (dispatch) => {
 
 export const fetchGame = (id) => async (dispatch) => {
     const response = localStorage.getItem('allGames');
-    const data = JSON.parse(response).filter(item => item.ID.toString() === id)[0];
+    const data = JSON.parse(response).find(item => item.ID.toString() === id);
+
+    if(data === undefined) {
+        return null 
+    } else // jel treba ovde else ??
+
+    // ako je url /games/77 a game.ID==77 ne postoji onda return null
 
     dispatch({ type: FETCH_GAME, payload: data });
     // console.log(data, '[fetch_GAME action]')
