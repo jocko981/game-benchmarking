@@ -8,10 +8,11 @@ const SidebarAdmin = () => {
 
     // console.log('useRouteMatch', useRouteMatch())
     // console.log('useParams', useParams())
-    console.log('useLocation', useLocation())
     // console.log('useHistory', useHistory())
+    
+    // console.log('useLocation', useLocation())    // ovo treba
 
-    const path = useLocation().pathname
+    const path = useLocation().pathname;
 
     useEffect(() => {
         //
@@ -27,4 +28,9 @@ const SidebarAdmin = () => {
     );
 }
 
-export default SidebarAdmin;
+export default React.memo(SidebarAdmin);
+//React.memo is a higher order component.
+//If your component renders the same result given the same props, you can wrap it in a call to React.memo for a performance boost in some cases by memoizing the result. 
+//This means that React will skip rendering the component, and reuse the last rendered result.
+//React.memo only checks for prop changes. If your function component wrapped in React.memo has a useState, useReducer or useContext Hook in its implementation, 
+//it will still rerender when state or context change.

@@ -38,13 +38,26 @@ export const deleteGame = (id) => async (dispatch) => {
     const dataAfterDeletingGame = JSON.parse(response).filter(item => item.ID.toString() !== id);
     const data = JSON.stringify(dataAfterDeletingGame);
 
-    localStorage.setItem('allGames', data)
+    localStorage.setItem('allGames', data);
 
     dispatch({ type: DELETE_GAME, payload: id });
     
-    history.push("/admin/games")
+    history.push("/admin/games");
 };
 
+export const createGame = (formValues) => async (dispatch, getState) => {
+    // const { userId } = getState().auth;
+    const response = localStorage.getItem('allGames');
+    const dataAfterCreatingGame = JSON.parse(response);
+    dataAfterCreatingGame.push(formValues);
+    const data = JSON.stringify(dataAfterCreatingGame);
+
+    localStorage.setItem('allGames', data);
+
+    dispatch({ type: CREATE_GAME, payload: dataAfterCreatingGame });
+
+    history.push("/admin/games");
+};
 
 
 
@@ -53,11 +66,11 @@ export const deleteGame = (id) => async (dispatch) => {
 
 export const editGame = (id) => async (dispatch) => {
     const response = localStorage.getItem('allGames');
-    const data = JSON.parse(response).filter(item => item.ID.toString() === id)[0];
+    const data = JSON.parse(response).find(item => item.ID.toString() === id);
 
     dispatch({ type: EDIT_GAME, payload: data });
     
-    history.push("/admin/games")
+    history.push("/admin/games");
     // console.log(data, '[edit_GAME action]');
 };
 

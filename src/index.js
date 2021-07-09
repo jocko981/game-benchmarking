@@ -36,11 +36,11 @@ localStorage.setItem('allUsers', `[{ "id": 1, "name": "admin", "password": "admi
     );
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={createStoreWithMiddleware(reducers)}>
       <App />
-    </Provider>
-  </React.StrictMode>,
+    </Provider>,
+  /* </React.StrictMode> */
   document.getElementById('root')
 );
 

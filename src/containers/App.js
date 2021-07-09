@@ -15,8 +15,8 @@ import SidebarAdmin from "../components/admin/SidebarAdmin/SidebarAdmin";
 import GameList from "../components/admin/Games/GameList";
 import GameShow from "../components/admin/Games/GameShow";
 import GameDelete from "../components/admin/Games/GameDelete";
-import GameEdit from "../components/admin/Games/GameEdit";
-import GameCreate from "../components/admin/Games/GameCreate";
+import GameEditForm from "../components/admin/Games/GameEditForm";
+import GameCreateForm from "../components/admin/Games/GameCreateForm";
 //
 import Users from "../components/admin/Users/Users";
 
@@ -66,7 +66,7 @@ const App = () => {
             <Route exact path="/admin/users" component={Users} />
             
             <Route exact path="/admin/games/delete/:id" component={GameDelete} />
-            <Route exact path="/admin/games/edit/:id" component={GameEdit} />
+            <Route exact path="/admin/games/edit/:id" component={GameEditForm} />
             {/* <Route exact path="/admin/games/:id" component={GameShow} /> */}
             {/* <Route exact path="/admin/games/new" component={GameCreate} /> */}
             {/* <Route exact path="/admin/games" component={GameList} /> */}
@@ -76,7 +76,7 @@ const App = () => {
         <Switch>
           <Redirect exact from="/admin" to="/admin/games" />
           
-          <Route exact path="/admin/games/new" component={GameCreate} />
+          <Route exact path="/admin/games/new" component={GameCreateForm} />
           <Route exact path="/admin/games/:id" component={GameShow} />
           <Route exact path="/admin/games" component={GameList} />
         </Switch>
