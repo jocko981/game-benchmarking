@@ -54,8 +54,8 @@ export const createGame = (formValues) => async (dispatch, getState) => {
     // const { userId } = getState().auth;
     const response = localStorage.getItem('allGames');
     const dataAfterCreatingGame = JSON.parse(response);
-    dataAfterCreatingGame.push(formValues);
-    const data = JSON.stringify(dataAfterCreatingGame);
+    const newArr = [...dataAfterCreatingGame, formValues]
+    const data = JSON.stringify(newArr);
 
     localStorage.setItem('allGames', data);
 
@@ -68,8 +68,8 @@ export const editGame = (id, formValues) => async (dispatch) => {
     const response = localStorage.getItem('allGames');
     const responseParse = JSON.parse(response);
     const restGames = responseParse.filter(item => item.ID.toString() !== id);
-    restGames.push(formValues);
-    const data = JSON.stringify(restGames);
+    const newArr = [...restGames, formValues]
+    const data = JSON.stringify(newArr);
 
     localStorage.setItem('allGames', data);
 
@@ -116,8 +116,8 @@ export const createUser = (formValues) => async (dispatch, getState) => {
     // const { userId } = getState().auth;
     const response = localStorage.getItem('allUsers');
     const dataAfterCreatingGame = JSON.parse(response);
-    dataAfterCreatingGame.push(formValues);
-    const data = JSON.stringify(dataAfterCreatingGame);
+    const newArr = [...dataAfterCreatingGame, formValues]
+    const data = JSON.stringify(newArr);
 
     localStorage.setItem('allUsers', data);
 
@@ -130,8 +130,8 @@ export const editUser = (id, formValues) => async (dispatch) => {
     const response = localStorage.getItem('allUsers');
     const responseParse = JSON.parse(response);
     const restUsers = responseParse.filter(item => item.id.toString() !== id);
-    restUsers.push(formValues);
-    const data = JSON.stringify(restUsers);
+    const newArr = [...restUsers, formValues]
+    const data = JSON.stringify(newArr);
 
     localStorage.setItem('allUsers', data);
 

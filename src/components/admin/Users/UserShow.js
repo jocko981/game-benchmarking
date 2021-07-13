@@ -23,7 +23,7 @@ class UserShow extends React.Component {
             );
         }
 
-        const { id, name } = this.props.user;
+        const { id, name, role } = this.props.user;
 
         console.log(this.props.user, 'user')
         return (
@@ -46,6 +46,11 @@ class UserShow extends React.Component {
                     <tr>
                       <td>name:</td>
                       <td>{name}</td>
+                    </tr>
+
+                    <tr>
+                      <td>role:</td>
+                      <td>{role}</td>
                     </tr>
 
                   </tbody>

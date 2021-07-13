@@ -4,13 +4,17 @@ import './index.css';
 import './assets/css/style.css';
 // import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import reducers from "./reducers";
 
 import App from './containers/App';
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+// const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);   this stays here
+// store={createStoreWithMiddleware(reducers)}                              put this inside <Provider>, but for now we use this under
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk))); // use this with ReduxDevTools chrome extention
 
     localStorage.setItem('allUsers', `[{ "id": 1, "name": "admin", "password": "admin", "role": "admin" }, 
       { "id": 2, "name": "user", "password": "user" }, 
@@ -39,7 +43,7 @@ const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 ReactDOM.render(
   // <React.StrictMode>
-    <Provider store={createStoreWithMiddleware(reducers)}>
+    <Provider store={store}>
       <App />
     </Provider>,
   /* </React.StrictMode> */
