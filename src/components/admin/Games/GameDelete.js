@@ -10,6 +10,7 @@ class GameDelete extends Component {
     componentDidMount() {
         const { id } = this.props.match.params;
         this.props.fetchGame(id);
+        console.log(this.props.match.params, 'idddd this.props.match.params')
     }
 
     renderDelete() {

@@ -23,14 +23,13 @@ export default (state = {}, action) => {
             // _.omit(object, *keys)  
             // 'object': This parameter holds the value of an object. 
             // 'keys': It is an optional parameter. It contains the key name that value need to be omitted.
-            // Return Value: It returns a copy of the object that filtered to omit the blacklisted keys.            
-        case FETCH_GAME:
-            return { ...state, [action.payload.ID]: action.payload };
+            // Return Value: It returns a copy of the object that filtered to omit the blacklisted keys.
 
-            
-        case EDIT_GAME:
-            return { ...state, [action.payload.ID]: action.payload };
+        // case EDIT_GAME:
+        //     return { ...state, [action.payload.ID]: action.payload };
 
+        // case CREATE_GAME:
+        //     return { ...state, [action.payload.ID]: action.payload };
 
         default:
             return state;

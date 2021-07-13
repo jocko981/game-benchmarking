@@ -68,6 +68,7 @@ class GameList extends React.Component {
                 </div>
                 {/* OVO moze da se prebaci na Admin SideBar - Add Game Btn */}
                 {this.renderCreateGame()} 
+                
             </div>
         );
     }

@@ -18,13 +18,21 @@ import GameDelete from "../components/admin/Games/GameDelete";
 import GameEditForm from "../components/admin/Games/GameEditForm";
 import GameCreateForm from "../components/admin/Games/GameCreateForm";
 //
-import Users from "../components/admin/Users/Users";
+import UserList from "../components/admin/Users/UserList";
+import UserShow from "../components/admin/Users/UserShow";
+import UserDelete from "../components/admin/Users/UserDelete";
+import UserCreateForm from "../components/admin/Users/UserCreateForm";
+import UserEditForm from "../components/admin/Users/UserEditForm";
 
 const App = () => {
   useEffect(() => {
     // used to setLocalStorage here.. now its at index.js
 
+    // if(localStorage.getItem('allGames') || localStorage.getItem('allUsers')) {
+    //   return null
+    // }
   }, [])
+  
 
     // <Route exact path="/" render={() => (
     //   loggedIn ? (
@@ -57,16 +65,15 @@ const App = () => {
 
           <Route path="/admin">
             {/* <Redirect to="/admin/games" /> */}
-            <Route exact component={SidebarAdmin} />
+            {/* <Route exact component={SidebarAdmin} /> ovo je isto kao <SidebarAdmin /> */}
+            <SidebarAdmin />
 
-            <Route exact path="/admin/users/delete/:id" component='edit this users' />
-            <Route exact path="/admin/users/edit/:id" component='edit this users' />
-            <Route exact path="/admin/users/:id" component='edit this users' />
-            <Route exact path="/admin/users/new" component='edit this users' />
-            <Route exact path="/admin/users" component={Users} />
-            
+            <Route exact path="/admin/users/delete/:id" component={UserDelete} />
+            <Route exact path="/admin/users/edit/:id" component={UserEditForm} />
+
             <Route exact path="/admin/games/delete/:id" component={GameDelete} />
             <Route exact path="/admin/games/edit/:id" component={GameEditForm} />
+            
             {/* <Route exact path="/admin/games/:id" component={GameShow} /> */}
             {/* <Route exact path="/admin/games/new" component={GameCreate} /> */}
             {/* <Route exact path="/admin/games" component={GameList} /> */}
@@ -79,6 +86,10 @@ const App = () => {
           <Route exact path="/admin/games/new" component={GameCreateForm} />
           <Route exact path="/admin/games/:id" component={GameShow} />
           <Route exact path="/admin/games" component={GameList} />
+          
+          <Route exact path="/admin/users/new" component={UserCreateForm} />
+          <Route exact path="/admin/users/:id" component={UserShow} />
+            <Route exact path="/admin/users" component={UserList} />
         </Switch>
         
       </Router>

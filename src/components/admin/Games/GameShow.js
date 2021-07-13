@@ -11,7 +11,6 @@ class GameShow extends React.Component {
     }
 
     render() {
-      console.log(!this.props.game)
       // this.props.game = undefined, !this.props.game = true
         if(!this.props.game) {
             return (
@@ -54,66 +53,80 @@ class GameShow extends React.Component {
                   </thead>
                 <tbody>
                     <tr>
+                      <td>num_of_players_favourite</td>
+                      <td>{num_of_players_favourite}</td>
+                    </tr>
+
+                    <tr>
+                      <td>price</td>
+                      <td>{price}</td>
+                    </tr>
+
+                    <tr>
+                      <td>type</td>
+                      <td>{type}</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>num_of_players_global</td>
+                      <td>{num_of_players_global}</td>
+                    </tr>
+
+                    <tr>
+                      <td>rating</td>
+                      <td>{rating}</td>
+                    </tr>
+
+                    <tr>
                       <td>num_of_players_2015</td>
                       <td>{num_of_players_2015}</td>
                     </tr>
+
                     <tr>
                       <td>num_of_players_2016</td>
                       <td>{num_of_players_2016}</td>
                     </tr>
+
                     <tr>
                       <td>num_of_players_2017</td>
                       <td>{num_of_players_2017}</td>
                     </tr>
+
                     <tr>
                       <td>num_of_players_2018</td>
                       <td>{num_of_players_2018}</td>
                     </tr>
+
                     <tr>
                       <td>num_of_players_2019</td>
                       <td>{num_of_players_2019}</td>
                     </tr>
+
                     <tr>
                       <td>num_of_players_2020</td>
                       <td>{num_of_players_2020}</td>
                     </tr>
 
                     <tr>
-                      <td>num_of_players_favourite</td>
-                      <td>{num_of_players_favourite}</td>
-                    </tr>
-                    <tr>
-                      <td>num_of_players_global</td>
-                      <td>{num_of_players_global}</td>
-                    </tr>
-                    <tr>
                       <td>platform</td>
                       <td>{platform}</td>
                     </tr>
-                    <tr>
-                      <td>price</td>
-                      <td>{price}</td>
-                    </tr>
-                    <tr>
-                      <td>rating</td>
-                      <td>{rating}</td>
-                    </tr>
+
                     <tr>
                       <td>single_player</td>
                       <td>{single_player}</td>
                     </tr>
-                    <tr>
-                      <td>type</td>
-                      <td>{type}</td>
-                    </tr>
+
                     <tr>
                       <td>violence</td>
                       <td>{violence}</td>
                     </tr>
+
                     <tr>
                       <td>won_award</td>
                       <td>{won_award}</td>
                     </tr>
+
                     <tr>
                       <td>year_published</td>
                       <td>{year_published}</td>

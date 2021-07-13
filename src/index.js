@@ -12,7 +12,9 @@ import App from './containers/App';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
-localStorage.setItem('allUsers', `[{ "id": 1, "name": "admin", "password": "admin", "role": "admin" }, { "id": 2, "name": "user", "password": "user" }, { "id": 3, "name": "user123", "password": "user123" }]`);
+    localStorage.setItem('allUsers', `[{ "id": 1, "name": "admin", "password": "admin", "role": "admin" }, 
+      { "id": 2, "name": "user", "password": "user" }, 
+      { "id": 3, "name": "user123", "password": "user123" }]`);
 
     localStorage.setItem('allGames', `[{ "name": "Dota 2", "ID": 1, "num_of_players_favourite": 1000, "price": 50, "type": "MOBA", "num_of_players_global": 1000000, "rating": 9.5, 
       "num_of_players_2015": 900000, "num_of_players_2016": 900000, "num_of_players_2017": 900000, "num_of_players_2018": 900000, "num_of_players_2019": 900000, "num_of_players_2020": 900000,
