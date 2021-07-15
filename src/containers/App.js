@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch, Redirect, Router } from "react-router-dom";
 import history from "../history";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 import LoginPage from "./LoginPage/LoginPage";
 // user pages
@@ -43,6 +45,7 @@ const App = () => {
     // )}/>
 
   return (
+    <DndProvider backend={HTML5Backend}>
     <div>
       <Router history={history}>
         <Switch>
@@ -94,6 +97,7 @@ const App = () => {
         
       </Router>
     </div>
+    </DndProvider>
   );
 }
 
