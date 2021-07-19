@@ -1,0 +1,36 @@
+
+.boxesGroup {
+    /* main layout to display nested boxes */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 240px 240px;
+    place-items: center;
+    /* decorating */
+    background-color: lightgrey;
+    /* drag style */
+    cursor: default;
+  }
+  
+  .box {
+    /* nested boxes */
+    background-color:rgb(216, 176, 253);
+    padding: 10px;
+    height: 84%;
+    width: 90%;
+    /* decorating */
+    border-radius: 10px;
+    /* drag style */
+    cursor: move;
+  }
+  
+  .content {
+    /* centering content in box */
+    position: relative;
+    float: left;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* decorating */
+    font-weight: bold;
+  }
+  

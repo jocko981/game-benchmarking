@@ -5,7 +5,7 @@ import BoxesGroup from "./BoxesGroup";
 
 const Dashboard = () => {
 
-    // fetch all games
+    // all games are fetched in <BoxesGroup> component 
 
     return (
         <div className="content-page-wrapper">
@@ -15,6 +15,8 @@ const Dashboard = () => {
             {/* <DragDrop /> */}
 
             <BoxesGroup />
+
+            `Ovde ubaci react-dnd library, probaj i to da implementiras`
 
         </div>
     );

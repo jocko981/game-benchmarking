@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchUser } from "../../../actions";
+import Loader from "../../Loaders/Loader";
 
 class UserShow extends React.Component {
 
@@ -13,13 +14,7 @@ class UserShow extends React.Component {
       // this.props.user = undefined, !this.props.user = true
         if(!this.props.user) {
             return (
-              <div className="content-page-wrapper">
-                  <div className="ui segment">
-                      <div className="ui active loader"></div>
-                      <br/>
-                      <br/>
-                  </div>
-              </div>
+              <Loader />
             );
         }
 

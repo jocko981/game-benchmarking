@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchGame } from "../../../actions";
 import GamePdf from "./GamePdf";
+import Loader from "../../Loaders/Loader";
 
 class GameShow extends React.Component {
 
@@ -14,13 +15,7 @@ class GameShow extends React.Component {
       // this.props.game = undefined, !this.props.game = true
         if(!this.props.game) {
             return (
-              <div className="content-page-wrapper">
-                  <div className="ui segment">
-                      <div className="ui active loader"></div>
-                      <br/>
-                      <br/>
-                  </div>
-              </div>
+              <Loader />
             );
         }
 

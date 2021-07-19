@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchGame, editGame } from "../../../actions";
 import GameForm from "./GameForm";
+import Loader from "../../Loaders/Loader";
 
 class GameEditForm extends Component {
     componentDidMount() {
@@ -19,13 +20,7 @@ class GameEditForm extends Component {
     render() {
         if(!this.props.game) {
             return (
-                <div className="content-page-wrapper">
-                    <div className="ui segment">
-                        <div className="ui active loader"></div>
-                        <br/>
-                        <br/>
-                    </div>
-                </div>
+                <Loader />
             );
         }
 

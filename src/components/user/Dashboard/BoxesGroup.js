@@ -1,21 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchAllGames } from "../../../actions";
-import GamesFavorite from "./GamesFavorite";
-import GamesBestRated from "./GamesBestRated";
-import GamesBestSelling from "./GamesBestSelling";
-import GamesBestSinglePlayer from "./GamesBestSinglePlayer";
+import Box from "./Box";
+import './BoxesGroup.css';
   
   class BoxesGroup extends React.Component {
     constructor(props) {
       super(props);
+
+      // localStorage.setItem('dndDashboard', `[{ "id": 1 },{ "id": 2 },{ "id": 3 },{ "id": 4 }]`);
+
+      const getLocalItem = localStorage.getItem('dndDashboard');
+      const localItem = JSON.parse(getLocalItem);
+      console.log(localItem, 'localItem inside state')
+      
       this.state = {
-        boxes: [
-          { id: 1, name: "BOX1", color: "red" },
-          { id: 2, name: "BOX2", color: "green" },
-          { id: 3, name: "BOX3", color: "blue" },
-          { id: 4, name: "BOX4", color: "orange" }
-        ]
+        boxes: localItem
       };
     }
     componentDidMount() {
@@ -43,6 +43,12 @@ import GamesBestSinglePlayer from "./GamesBestSinglePlayer";
         boxes[toIndex] = { id: toBox.id, ...fromRest };
   
         this.setState({ boxes: boxes });
+
+        console.log('stateSet');
+
+        const toSetLocal = JSON.stringify(boxes);
+
+        localStorage.setItem('dndDashboard', toSetLocal);
       }
     };
   
@@ -76,57 +82,65 @@ import GamesBestSinglePlayer from "./GamesBestSinglePlayer";
 
   makeBoxes = () => {
     const games = this.props.games;
+
     return this.state.boxes.map((item, index) => (
-      <GamesFavorite
+      <Box
           games={games}
           key={index}
-          id={index +1}
+          id={item.id}
           draggable="true"
           onDragStart={this.handleDragStart}
           onDragOver={this.handleDragOver}
           onDrop={this.handleDrop}
         />
     ));
-  };  
+  };
+  // makeBoxesTest = () => {
+  //   const games = this.props.games;
+  //   const key = 0;
+  //   return (
+  //     <>
+  //     <GamesFavorite
+  //         games={games}
+  //         id={this.state.boxes[0].id}
+  //         draggable="true"
+  //         onDragStart={this.handleDragStart}
+  //         onDragOver={this.handleDragOver}
+  //         onDrop={this.handleDrop}
+  //       />
+  //       <GamesBestRated
+  //         games={games}
+  //         id={this.state.boxes[1].id}
+  //         draggable="true"
+  //         onDragStart={this.handleDragStart}
+  //         onDragOver={this.handleDragOver}
+  //         onDrop={this.handleDrop}
+  //       />
+  //       <GamesBestSelling
+  //         games={games}
+  //         id={this.state.boxes[2].id}
+  //         draggable="true"
+  //         onDragStart={this.handleDragStart}
+  //         onDragOver={this.handleDragOver}
+  //         onDrop={this.handleDrop}
+  //       />
+  //       <GamesBestSinglePlayer
+  //         games={games}
+  //         id={this.state.boxes[3].id}
+  //         draggable="true"
+  //         onDragStart={this.handleDragStart}
+  //         onDragOver={this.handleDragOver}
+  //         onDrop={this.handleDrop}
+  //       />
+  //     </>
+  //   );
+  // };
   
   render() {
-    console.log(this.state) ///////
-    const games = this.props.games;
     return (
       <div className="boxesGroup">        
-        {/* <GamesFavorite
-          games={games}
-          id={this.state.boxes[0].id}
-          draggable="true"
-          onDragStart={this.handleDragStart}
-          onDragOver={this.handleDragOver}
-          onDrop={this.handleDrop}
-        />
-        <GamesBestRated
-          games={games}
-          id={this.state.boxes[1].id}
-          draggable="true"
-          onDragStart={this.handleDragStart}
-          onDragOver={this.handleDragOver}
-          onDrop={this.handleDrop}
-        />
-        <GamesBestSelling
-          games={games}
-          id={this.state.boxes[2].id}
-          draggable="true"
-          onDragStart={this.handleDragStart}
-          onDragOver={this.handleDragOver}
-          onDrop={this.handleDrop}
-        />
-        <GamesBestSinglePlayer
-          games={games}
-          id={this.state.boxes[3].id}
-          draggable="true"
-          onDragStart={this.handleDragStart}
-          onDragOver={this.handleDragOver}
-          onDrop={this.handleDrop}
-        /> */}
         {this.makeBoxes()}
+        { console.log(this.state.boxes, 'box u render')}
       </div>
     );
   }

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchUser, editUser } from "../../../actions";
 import UserForm from "./UserForm";
+import Loader from "../../Loaders/Loader";
 
 class UserEditForm extends Component {
     componentDidMount() {
@@ -19,13 +20,7 @@ class UserEditForm extends Component {
     render() {
         if(!this.props.user) {
             return (
-                <div className="content-page-wrapper">
-                    <div className="ui segment">
-                        <div className="ui active loader"></div>
-                        <br/>
-                        <br/>
-                    </div>
-                </div>
+                <Loader />
             );
         }
 

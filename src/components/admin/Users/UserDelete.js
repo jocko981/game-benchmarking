@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchUser, deleteUser } from "../../../actions";
 import history from "../../../history";
+import Loader from "../../Loaders/Loader";
 
 import ModalDeleteUser from "../Modals/ModalDeleteUser";
 
@@ -27,13 +28,7 @@ class UserDelete extends Component {
     renderContent() {
         if(!this.props.user) {
             return (
-                <div className="content-page-wrapper">
-                    <div className="ui segment">
-                        <div className="ui active loader"></div>
-                        <br/>
-                        <br/>
-                    </div>
-                </div>
+                <Loader />
             );
         }
 
