@@ -1,0 +1,14 @@
+
+.criteria_div {
+    padding: 1.5% 0;
+    margin: 0 auto;
+}
+
+.criteria_div .criteria input {
+    transform: scale(1.8);
+    margin: 10px 10px 0px;
+}
+
+.criteria_table {
+    margin: 3% 0;
+}

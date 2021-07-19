@@ -28,19 +28,19 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk))); /
     
       { "name": "World of Warcraft", "ID": 2, "num_of_players_favourite": 2000, "price": 50, "type": "MOBA", "num_of_players_global": 3000000, "rating": 9.4, 
       "num_of_players_2015": 900000, "num_of_players_2016": 900000, "num_of_players_2017": 900000, "num_of_players_2018": 900000, "num_of_players_2019": 900000, "num_of_players_2020": 900000,
-      "year_published": 2011, "platform": "steam", "violence": 0, "won_award": 1, "single_player": 0},
+      "year_published": 2001, "platform": "steam", "violence": 0, "won_award": 1, "single_player": 0},
     
       { "name": "Counter Strike GO", "ID": 3, "num_of_players_favourite": 1500, "price": 50, "type": "MOBA", "num_of_players_global": 1500000, "rating": 8.8, 
       "num_of_players_2015": 900000, "num_of_players_2016": 900000, "num_of_players_2017": 900000, "num_of_players_2018": 900000, "num_of_players_2019": 900000, "num_of_players_2020": 900000,
-      "year_published": 2011, "platform": "steam", "violence": 1, "won_award": 1, "single_player": 1},
+      "year_published": 2004, "platform": "steam", "violence": 1, "won_award": 1, "single_player": 1},
     
       { "name": "Minecraft", "ID": 4, "num_of_players_favourite": 1200, "price": 50, "type": "MOBA", "num_of_players_global": 1900000, "rating": 8.9, 
       "num_of_players_2015": 900000, "num_of_players_2016": 900000, "num_of_players_2017": 900000, "num_of_players_2018": 900000, "num_of_players_2019": 900000, "num_of_players_2020": 900000,
-      "year_published": 2011, "platform": "steam", "violence": 0, "won_award": 1, "single_player": 1},
+      "year_published": 2013, "platform": "steam", "violence": 0, "won_award": 1, "single_player": 1},
     
       { "name": "League of Legends", "ID": 7, "num_of_players_favourite": 11000, "price": 50, "type": "MOBA", "num_of_players_global": 2400000, "rating": 7.7, 
       "num_of_players_2015": 900000, "num_of_players_2016": 900000, "num_of_players_2017": 900000, "num_of_players_2018": 900000, "num_of_players_2019": 900000, "num_of_players_2020": 900000,
-      "year_published": 2011, "platform": "steam", "violence": 0, "won_award": 1, "single_player": 0}]`
+      "year_published": 2012, "platform": "steam", "violence": 0, "won_award": 1, "single_player": 0}]`
     );
 
 ReactDOM.render(

@@ -36,7 +36,7 @@ import './BoxesGroup.css';
         }
       }
   
-      if (fromIndex != -1 && toIndex != -1) {
+      if (fromIndex !== -1 && toIndex !== -1) { //ovde je bio console !Warning za != pa sam stavio !==
         let { fromId, ...fromRest } = boxes[fromIndex];
         let { toId, ...toRest } = boxes[toIndex];
         boxes[fromIndex] = { id: fromBox.id, ...toRest };

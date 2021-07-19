@@ -14,7 +14,7 @@ const Box = (props) => {
                   onDrop={props.onDrop({ id: props.id })}
                 >
                 <div>
-                    <h5>Favorite games Div 1</h5>
+                    <h3>Favorite games - div 1</h3>
                     {props.games.sort((a, b) => b.num_of_players_favourite - a.num_of_players_favourite).map(item => {
                         return <div key={item.ID}>{item.name} - {item.num_of_players_favourite}</div>
                     })}
@@ -34,7 +34,7 @@ const Box = (props) => {
                 >
         
                 <div>
-                    <h5>Best Rated games Div 2</h5>
+                    <h3>Best Rated games - div 2</h3>
                     {props.games.sort((a, b) => b.rating - a.rating).map(item => {
                         return <div key={item.ID}>{item.name} - {item.rating}</div>
                     })}
@@ -55,7 +55,7 @@ const Box = (props) => {
                 >
         
                 <div>
-                    <h5>Best Selling games Div 3</h5>
+                    <h3>Best Selling games - div 3</h3>
                     {props.games.sort((a, b) => b.num_of_players_global - a.num_of_players_global).map(item => {
                         return <div key={item.ID}>{item.name} - {item.num_of_players_global}</div>
                     })}
@@ -75,7 +75,7 @@ const Box = (props) => {
                 >
         
                 <div>
-                    <h5>Best SinglePlayer games Div 4</h5>
+                    <h3>Best SinglePlayer games - div 4</h3>
                     {props.games.filter(item => item.single_player !== 0)
                     
                     .sort((a, b) => b.num_of_players_global - a.num_of_players_global).map(item => {
