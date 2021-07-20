@@ -6,43 +6,43 @@ const BenchmarkTable = ({ games }) => {
             <thead>
                 <tr>
                     <th></th>
-                    {games.map(item => <th>{item.name}</th>)}
+                    {games.map((item, index) => <th key={index}>{item.name}</th>)}
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>Single Player</td>
-                    {games.map(item => <td>{item.single_player.toString() === '1' ? 'Yes' : '/'}</td>)}
+                    {games.map((item, index) => <td key={index}>{item.single_player.toString() === '1' ? 'Yes' : '/'}</td>)}
                 </tr>
 
                 <tr>
                     <td>Violence</td>
-                    {games.map(item => <td>{item.violence.toString() === '1' ? 'Yes' : '/'}</td>)}
+                    {games.map((item, index) => <td key={index}>{item.violence.toString() === '1' ? 'Yes' : '/'}</td>)}
                 </tr>
 
                 <tr>
                     <td>Players &gt; 1.500.000</td>
-                    {games.map(item => <td>{item.num_of_players_global > 1500000 ? 'Yes' : '/'}</td>)}
+                    {games.map((item, index) => <td key={index}>{item.num_of_players_global > 1500000 ? 'Yes' : '/'}</td>)}
                 </tr>
 
                 <tr>
                     <td>Rating &gt; 8</td>
-                    {games.map(item => <td>{item.rating > 8 ? 'Yes' : '/'}</td>)}
+                    {games.map((item, index) => <td key={index}>{item.rating > 8 ? 'Yes' : '/'}</td>)}
                 </tr>
 
                 <tr>
                     <td>Year Published &gt; 2010</td>
-                    {games.map(item => <td>{item.year_published > 2010 ? 'Yes' : '/'}</td>)}
+                    {games.map((item, index) => <td key={index}>{item.year_published > 2010 ? 'Yes' : '/'}</td>)}
                 </tr>
 
                 <tr>
                     <td>Steam Platform</td>
-                    {games.map(item => <td>{item.platform === 'steam' ? 'Yes' : '/'}</td>)}
+                    {games.map((item, index) => <td key={index}>{item.platform === 'steam' ? 'Yes' : '/'}</td>)}
                 </tr>
 
                 <tr>
                     <td>Won Award</td>
-                    {games.map(item => <td>{item.won_award.toString() === '1' ? 'Yes' : '/'}</td>)}
+                    {games.map((item, index) => <td key={index}>{item.won_award.toString() === '1' ? 'Yes' : '/'}</td>)}
                 </tr>
 
             </tbody>
