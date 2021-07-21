@@ -1,4 +1,5 @@
 import React from "react";
+import "./Charts.css";
 import ReactApexChart from "react-apexcharts";
 import { connect } from "react-redux";
 import { fetchAllGames } from "../../../actions";
@@ -16,33 +17,30 @@ class Charts extends React.Component {
 
     render() {
         const options = {
-            chart: {
-                height: 350,
-                type: "area"
-            },
-            stroke: {
-                curve: "smooth"
-            }
+            // chart: {
+            //     height: 350,
+            //     type: "heatmap"
+            // },
+            // stroke: {
+            //     curve: "smooth"
+            // }
         };
-        const series = [{
-            name: 'WOW',
-            data: [31, 21, 33, 3, 12, 51, 1]
-        },
-        {
-            name: 'WOW',
-            data: [31, 21, 33, 3, 12, 51, 1]
-        },
-        {
-            name: 'WOW',
-            data: [31, 21, 33, 3, 12, 51, 1]
-        }
-        ];
+
+        const games = this.props.games;
+        const series = games.map((item) => {
+            return {
+                name: item.name,
+                data: [item.num_of_players_2015, item.num_of_players_2016, item.num_of_players_2017, item.num_of_players_2018, item.num_of_players_2019, item.num_of_players_2020]
+            }
+        })
 
         return (
             <div className="content-page-wrapper">
                 <h1>Charts</h1>
-
-                <ReactApexChart options={options} series={series} type="heatmap" height={350} />
+                
+                <div className="chart_wrapper">
+                    <ReactApexChart options={options} series={series} type="heatmap" height={350} />
+                </div>
             </div>
         );
     }
