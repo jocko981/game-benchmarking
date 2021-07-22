@@ -1,0 +1,22 @@
+
+.input_div {
+    padding: 3%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.checkboxes_wrapper {
+    padding: 3%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.checkboxes_wrapper label {
+    font-size: 1.2em;
+    padding-left: 6px;
+}
+
+.checkbox_div input {
+    transform: scale(1.5);
+    margin: 1.5%;
+}
