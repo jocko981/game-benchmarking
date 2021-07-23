@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import _ from "lodash";
 
 const Checkboxes = ({ games }) => {
     const inputs = ['Won Award', 'Single Player', 'Violence'];
@@ -9,9 +10,18 @@ const Checkboxes = ({ games }) => {
     const [checkedTypes, setCheckedTypes] = useState(new Array(types.length).fill(false));
     const [checkedSorts, setCheckedSorts] = useState(new Array(sorts.length).fill(false));
     const [filterGames, setFilterGames] = useState(games);
+    const [searchTerm, setSearchTerm] = useState("");
 
-    console.log(filterGames, 'filterGames - state')
-
+    const handleSearchChange = (event) => {
+        const newValue = event.target.value;
+        setSearchTerm(newValue);
+    }
+    const filtersearchName = (arr) => {
+        if (searchTerm) {
+            return arr.filter(item => item.name.toLowerCase().includes(searchTerm.toLowerCase()))
+        }
+        return arr;
+    }
     const handleWonAward = (arr) => {
         if (checkedInputs[0]) {
             return arr.filter(item => item.won_award.toString() === '1');
@@ -46,20 +56,20 @@ const Checkboxes = ({ games }) => {
     }
     const handleRatingSort = (arr) => {
         if (checkedSorts[0]) {
-            return arr.filter(item => item.won_award.toString() === '1');
+            const arrNew = _.sortBy(arr, 'rating').sort((a, b) => b.rating - a.rating);
+            return arrNew;
         } else {
             return arr;
         }
     }
     const handlePlayersSort = (arr) => {
         if (checkedSorts[1]) {
-            return arr.sort((a,b) => a.num_of_players_favourite - b.num_of_players_favourite);
+            const arrNew = _.sortBy(arr, 'num_of_players_global').sort((a, b) => b.num_of_players_global - a.num_of_players_global);
+            return arrNew;
         } else {
             return arr;
         }
     }
-    // .sort((a, b) => b.num_of_players_favourite - a.num_of_players_favourite).map(item => {
-    //     return <div key={item.ID}>{item.name} - {item.num_of_players_favourite}</div>
 
     useEffect(() => {
         //Filter options updated so apply all filters here
@@ -68,10 +78,11 @@ const Checkboxes = ({ games }) => {
         result = handleWonAward(result);
         result = handleViolence(result);
         result = handleType(result);
+        result = handleRatingSort(result);
         result = handlePlayersSort(result);
-        // result = filtersearchName(result);
+        result = filtersearchName(result);
         setFilterGames(result);
-    }, [checkedInputs, checkedTypes, checkedSorts]);
+    }, [checkedInputs, checkedTypes, checkedSorts, searchTerm]);
 
     const handleInputs = (position) => {
         const updateCheckedState = checkedInputs.map((item, index) => index === position ? !item : item);
@@ -88,6 +99,10 @@ const Checkboxes = ({ games }) => {
 
     return (
         <>
+            <div className="input_div ui input">
+                <input onChange={handleSearchChange} type="text" placeholder="Search for games..." />
+            </div>
+
             <div className="checkboxes_wrapper">
                 <div>
                     {inputs.map((item, index) => {

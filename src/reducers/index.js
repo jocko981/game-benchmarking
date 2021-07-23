@@ -6,7 +6,7 @@ import authReducer from "./authReducer";
 
 export default combineReducers({ 
     auth: authReducer,
-    form: formReducer,
     games: gameReducer,
-    users: userReducer
+    users: userReducer,
+    form: formReducer
 });

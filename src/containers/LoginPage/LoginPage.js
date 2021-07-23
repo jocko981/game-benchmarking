@@ -1,6 +1,8 @@
 
 import React, { useState } from "react";
 import "./LoginPage.css";
+import { connect } from "react-redux";
+import { signIn } from "../../actions";
 
 const LoginPage = (props) => {
     const [loginValue, setLoginValue] = useState({ username: "", password: "" });
@@ -24,11 +26,15 @@ const LoginPage = (props) => {
 
         allUsers.filter((userData) => {
             if(loginValue.username === userData.name && loginValue.password === userData.password) {
+
+                //  !!!!!!!!!!!!!!!!!!!!!!! sign in ACTION & setLocalStorage !!!!!!!!!!!!!!!!!!!!!!!!!  HERE !!!!!!!!!!!
+
                 // if (user.admin === true) => push to /admin else push to /user
                 if(userData.role === "admin") {
                     props.history.push("/admin")
-                } else
-                props.history.push("/user")
+                } else {
+                    props.history.push("/user")
+                }
             }
             setErrorMsg("This account does not exist, please try again.")
             return null
@@ -41,7 +47,6 @@ const LoginPage = (props) => {
         } else if(loginValue.password.length < 1) {
             setErrorMsg("Please enter Password.");
         }
-        
 
         console.log(allUsers, 'loging')
     }
@@ -63,7 +68,7 @@ const LoginPage = (props) => {
                   value={loginValue.username}
                   placeholder="Username"
                   autoComplete="off"
-                  maxLength="99"
+                  maxLength="199"
                 />
         
                 <input
@@ -72,7 +77,7 @@ const LoginPage = (props) => {
                   value={loginValue.password}
                   placeholder="Password"
                   type="password"
-                  maxLength="99"
+                  maxLength="199"
                 />
 
                 <button type="submit">Login</button>
@@ -86,4 +91,10 @@ const LoginPage = (props) => {
     
 }
 
-export default LoginPage;
+const mapStateToProps = (state) => {
+    console.log(state.auth, 'state.auth')
+
+    return { state: state.auth };
+};
+
+export default connect(mapStateToProps, { signIn })(LoginPage);

@@ -16,8 +16,7 @@ export const DELETE_GAME = "DELETE_GAME";
 export const CREATE_GAME = "CREATE_GAME";
 export const EDIT_GAME = "EDIT_GAME";
 
-
-//                     GAMES
+//                       GAMES
 
 export const fetchAllGames = () => async (dispatch) => {
     const response = localStorage.getItem('allGames');
@@ -33,6 +32,7 @@ export const fetchGame = (id) => async (dispatch) => {
     if(data === undefined) {
         return null 
     } else // jel treba ovde else ??
+    // ovde kada nema Url za specific game onda smao izbaci Loader komponentu i vrti se..
 
     // ako je url /games/77 a game.ID==77 ne postoji onda return null
 
@@ -140,41 +140,12 @@ export const editUser = (id, formValues) => async (dispatch) => {
     history.push("/admin/users");
 };
 
+//                       LOGIN
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Login actions
-export const signIn = (userId) => {
+export const signIn = (user) => {
     return {
         type: SIGN_IN,
-        payload: userId
+        payload: user
     };
 };
 export const signOut = () => {

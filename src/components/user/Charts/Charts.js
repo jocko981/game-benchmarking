@@ -40,6 +40,7 @@ class Charts extends React.Component {
                 
                 <div className="chart_wrapper">
                     <ReactApexChart options={options} series={series} type="heatmap" height={350} />
+                    <ReactApexChart options={options} series={series} type="line" height={350} />
                 </div>
             </div>
         );

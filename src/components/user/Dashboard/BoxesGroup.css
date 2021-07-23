@@ -10,9 +10,9 @@
     /* lightgrey je bio:  background-color */
     /* drag style */
     cursor: default;
-  }
+}
   
-  .box {
+.box {
     /* nested boxes */
     background-color:rgb(216, 176, 253);
     padding: 10px;
@@ -22,16 +22,5 @@
     border-radius: 3px;
     /* drag style */
     cursor: move;
-  }
-  
-  .content {
-    /* centering content in box */
-    position: relative;
-    float: left;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* decorating */
-    font-weight: bold;
-  }
+}
   

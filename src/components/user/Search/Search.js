@@ -15,10 +15,6 @@ const Search = (props) => {
 
             <div className="search_wrapper">
 
-                <div className="input_div ui input">
-                    <input type="text" placeholder="Search for games..." />
-                </div>
-
                 <Checkboxes games={props.games} />
 
             </div>
