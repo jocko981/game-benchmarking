@@ -4,6 +4,7 @@ import StripeCheckout from "react-stripe-checkout";
 import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import Loader from "../../Loaders/Loader";
 
 toast.configure();
 
@@ -27,7 +28,7 @@ const Donate = () => {
         
         console.log("Response:", response.data);
 
-        const { status } = response.data;        
+        const { status } = response.data;
 
         if (status === "success") {
             toast("Success! Check email for details", { type: "success" });
@@ -38,8 +39,6 @@ const Donate = () => {
 
     return (
         <div className="content-page-wrapper">
-            <h1>Donate</h1>
-
             <div className="container">
                 <div className="product">
                     <h1>{product.name}</h1>

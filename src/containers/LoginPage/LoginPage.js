@@ -26,7 +26,7 @@ const LoginPage = (props) => {
 
         allUsers.filter((userData) => {
             if(loginValue.username === userData.name && loginValue.password === userData.password) {
-                // if (user.admin === true) => push to /admin else push to /user
+                // if (admin === true) => push to /admin else push to /user
                 if(userData.role === "admin") {
                     props.adminSignIn(userData); // action call
                     props.history.push("/admin")

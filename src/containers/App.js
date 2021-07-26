@@ -34,69 +34,56 @@ const App = () => {
     //   return null
     // }
   }, [])
-  
 
-    // <Route exact path="/" render={() => (
-    //   loggedIn ? (
-    //     <Redirect to="/searchDashboard"/>
-    //   ) : (
-    //     <Redirect to="/login"/>
-    //   )
-    // )}/>
+
+  // <Route exact path="/" render={() => (
+  //   loggedIn ? (
+  //     <Redirect to="/"/>
+  //   ) : (
+  //     <Redirect to="/login"/>
+  //   )
+  // )}/>
 
   return (
     <DndProvider backend={HTML5Backend}>
-    <div>
       <Router history={history}>
+        
         <Switch>
-          <Route exact path="/">
-            <Redirect to="/login" />
-          </Route>
-          
+          <Redirect exact from="/" to="/login" />
+
           <Route exact path="/login" component={LoginPage} />
-
-          <Route path="/user">
-            <Redirect to="/user/dashboard" />
-            <Route exact component={SidebarUser} />
-
-            <Route exact path="/user/dashboard" component={Dashboard} />
-            <Route exact path="/user/benchmark" component={Benchmark} />
-            <Route exact path="/user/charts" component={Charts} />
-            <Route exact path="/user/search" component={Search} />
-            <Route exact path="/user/donate" component={Donate} />
-          </Route>
-
-          <Route path="/admin">
-            {/* <Redirect to="/admin/games" /> */}
-            {/* <Route exact component={SidebarAdmin} /> ovo je isto kao <SidebarAdmin /> */}
-            <SidebarAdmin />
-
-            <Route exact path="/admin/users/delete/:id" component={UserDelete} />
-            <Route exact path="/admin/users/edit/:id" component={UserEditForm} />
-
-            <Route exact path="/admin/games/delete/:id" component={GameDelete} />
-            <Route exact path="/admin/games/edit/:id" component={GameEditForm} />
-            
-            {/* <Route exact path="/admin/games/:id" component={GameShow} /> */}
-            {/* <Route exact path="/admin/games/new" component={GameCreate} /> */}
-            {/* <Route exact path="/admin/games" component={GameList} /> */}
-          </Route>
+          <Route path="/user" component={SidebarUser} /> {/* not 'exact' */}
+          <Route path="/admin" component={SidebarAdmin} /> {/* not 'exact' */}
         </Switch>
 
+        {/* USER page Nav handle */}
+        <Switch>
+          <Redirect exact from="/user" to="/user/dashboard" />
+
+          <Route exact path="/user/dashboard" component={Dashboard} />
+          <Route exact path="/user/benchmark" component={Benchmark} />
+          <Route exact path="/user/charts" component={Charts} />
+          <Route exact path="/user/search" component={Search} />
+          <Route exact path="/user/donate" component={Donate} />
+        </Switch>
+        {/* ADMIN page Nav handle */}
         <Switch>
           <Redirect exact from="/admin" to="/admin/games" />
-          
+
+          <Route exact path="/admin/games/delete/:id" component={GameDelete} />
+          <Route exact path="/admin/games/edit/:id" component={GameEditForm} />
           <Route exact path="/admin/games/new" component={GameCreateForm} />
           <Route exact path="/admin/games/:id" component={GameShow} />
           <Route exact path="/admin/games" component={GameList} />
-          
+
+          <Route exact path="/admin/users/delete/:id" component={UserDelete} />
+          <Route exact path="/admin/users/edit/:id" component={UserEditForm} />
           <Route exact path="/admin/users/new" component={UserCreateForm} />
           <Route exact path="/admin/users/:id" component={UserShow} />
-            <Route exact path="/admin/users" component={UserList} />
+          <Route exact path="/admin/users" component={UserList} />
         </Switch>
-        
+
       </Router>
-    </div>
     </DndProvider>
   );
 }

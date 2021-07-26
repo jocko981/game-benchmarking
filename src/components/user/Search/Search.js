@@ -1,25 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { fetchAllGames } from "../../../actions";
 import Checkboxes from "./Checkboxes";
 import "./Search.css";
 
-const Search = (props) => {
-    useEffect(() => {
-        fetchAllGames();
-    }, [fetchAllGames])
+class Search extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
 
-    return (
-        <div className="content-page-wrapper">
-            <h1>Search</h1>
+    componentDidMount() {
+        this.props.fetchAllGames();
+    }
 
-            <div className="search_wrapper">
+    render() {
+        return (
+            <div className="content-page-wrapper">
+                <h1>Search</h1>
 
-                <Checkboxes games={props.games} />
+                <div className="search_wrapper">
 
+                    <Checkboxes games={this.props.games} />
+
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
+
 }
 
 const mapStateToProps = (state) => {

@@ -6,7 +6,9 @@
     grid-template-rows: 240px 240px;
     place-items: center;
     /* decorating */
-    background-color: rgb(240, 240, 240); 
+    
+    /* background-color: rgb(240, 240, 240);  */
+
     /* lightgrey je bio:  background-color */
     /* drag style */
     cursor: default;
@@ -14,10 +16,11 @@
   
 .box {
     /* nested boxes */
-    background-color:rgb(216, 176, 253);
+    /* background-color:rgb(216, 176, 253); */
+    background-color:rgb(255, 243, 133);
     padding: 10px;
-    height: 84%;
-    width: 90%;
+    height: 81%;
+    width: 81%;
     /* decorating */
     border-radius: 3px;
     /* drag style */

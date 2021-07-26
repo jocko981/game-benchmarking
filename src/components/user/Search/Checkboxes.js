@@ -12,6 +12,10 @@ const Checkboxes = ({ games }) => {
     const [filterGames, setFilterGames] = useState(games);
     const [searchTerm, setSearchTerm] = useState("");
 
+    useEffect(() => {
+        setFilterGames(games)
+    },[games])
+
     const handleSearchChange = (event) => {
         const newValue = event.target.value;
         setSearchTerm(newValue);
