@@ -11,12 +11,12 @@ const Benchmark = (props) => {
 
     const inputs = ['Single Player', 'Violence', 'Players > 1.500.000', 'Rating > 8', 'Year Published', 'Steam Platform', 'Won Award']; // to local storage this and then map it
 
+    // localStorage.setItem('benchmark', JSON.stringify(inputs));
+
     const response = localStorage.getItem('benchmark');
     const data = JSON.parse(response);
     const [checkedState, setCheckedState] = useState(data.map(item => item.checked));
     const [checkedProps, setCheckedProps] = useState(data);
-
-    // localStorage.setItem('benchmark')
 
     const handleChange = (position) => {
         const updateCheckedState = checkedState.map((item, index) => index === position ? !item : item);
@@ -51,6 +51,8 @@ const Benchmark = (props) => {
                                 onChange={() => handleChange(index)}
                             />
                             <label htmlFor={index}>{item}</label>
+                            
+                            {checkedProps[index].checked !== checkedState[index] && <span> - [ criteria changed ]</span>}
                         </div>
                     );
                 })}

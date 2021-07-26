@@ -19,7 +19,8 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk))); /
     localStorage.setItem('allUsers', `[
       { "id": 1, "role": "admin", "name": "admin", "password": "admin" }, 
       { "id": 2, "role": "user", "name": "user", "password": "user" }, 
-      { "id": 3, "role": "user", "name": "user123", "password": "user123" }
+      { "id": 3, "role": "user", "name": "user123", "password": "user123" },
+      { "id": 4, "role": "admin", "name": "admin123", "password": "admin123" }
     ]`);
 
     localStorage.setItem('allGames', `[{ "name": "Dota 2", "ID": 1, "num_of_players_favourite": 1000, "price": 50, "type": "MOBA", "num_of_players_global": 2000000, "rating": 9.5, 

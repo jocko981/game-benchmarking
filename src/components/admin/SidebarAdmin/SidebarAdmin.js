@@ -1,10 +1,12 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./SidebarAdmin.css";
+import { connect } from "react-redux";
+import { adminSignOut } from "../../../actions";
 
-const SidebarAdmin = () => {
-    const [active, setActive] = useState({ games: 0, users: 0 });
+const SidebarAdmin = (props) => {
+    const [storage] = useState(localStorage.getItem('adminData') || '');
 
     // console.log('useRouteMatch', useRouteMatch())
     // console.log('useParams', useParams())
@@ -14,21 +16,28 @@ const SidebarAdmin = () => {
 
     const path = useLocation().pathname;
 
-    useEffect(() => {
-        //
-    }, [path])
+    const renderUsername = () => {
+        if(!storage) {
+            return null
+        }
+        const parsedData = JSON.parse(storage);
+        return `Welcome: ${parsedData.name}`
+    }
 
     return (
         <div className="sidebar-admin">
             <h1>ADMIN</h1>
+            <p>{renderUsername()}</p>
             
-            <Link to="/admin/games" onClick={() => setActive({ games: 1, users: 0 })} className={path === '/admin/games' ? 'active' : ''}><span>Games</span></Link>
-            <Link to="/admin/users" onClick={() => setActive({ games: 0, users: 1 })} className={path === '/admin/users' ? 'active' : ''}><span>Users</span></Link>
+            <Link to="/admin/games" className={path === '/admin/games' ? 'active' : ''}><span>Games</span></Link>
+            <Link to="/admin/users" className={path === '/admin/users' ? 'active' : ''}><span>Users</span></Link>
+
+            <div onClick={props.adminSignOut} className="ui button">Sign out</div>
         </div>
     );
 }
 
-export default React.memo(SidebarAdmin);
+export default connect(null, { adminSignOut })(React.memo(SidebarAdmin));
 //React.memo is a higher order component.
 //If your component renders the same result given the same props, you can wrap it in a call to React.memo for a performance boost in some cases by memoizing the result. 
 //This means that React will skip rendering the component, and reuse the last rendered result.

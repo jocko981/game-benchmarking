@@ -32,3 +32,8 @@
     padding: 10px 30px;
     cursor: context-menu;
 }
+.sidebar-admin p {
+    color: black;
+    padding: 0px 30px 10px;
+    cursor: context-menu;
+}

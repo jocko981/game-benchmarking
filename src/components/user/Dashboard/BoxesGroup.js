@@ -138,7 +138,7 @@ import './BoxesGroup.css';
   
   render() {
     return (
-      <div className="boxesGroup">        
+      <div className="boxesGroup">
         {this.makeBoxes()}
         { console.log(this.state.boxes, 'box u render')}
       </div>

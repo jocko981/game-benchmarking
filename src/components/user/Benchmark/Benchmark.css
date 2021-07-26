@@ -9,6 +9,10 @@
     margin: 10px 10px 0px;
 }
 
+.criteria_div .criteria span {
+    color: orange;
+}
+
 .criteria_table {
     margin: 3% 0;
 }

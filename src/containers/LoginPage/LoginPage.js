@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
 import { connect } from "react-redux";
-import { signIn } from "../../actions";
+import { userSignIn, adminSignIn } from "../../actions";
 
 const LoginPage = (props) => {
     const [loginValue, setLoginValue] = useState({ username: "", password: "" });
@@ -26,13 +26,12 @@ const LoginPage = (props) => {
 
         allUsers.filter((userData) => {
             if(loginValue.username === userData.name && loginValue.password === userData.password) {
-
-                //  !!!!!!!!!!!!!!!!!!!!!!! sign in ACTION & setLocalStorage !!!!!!!!!!!!!!!!!!!!!!!!!  HERE !!!!!!!!!!!
-
                 // if (user.admin === true) => push to /admin else push to /user
                 if(userData.role === "admin") {
+                    props.adminSignIn(userData); // action call
                     props.history.push("/admin")
                 } else {
+                    props.userSignIn(userData); // action call
                     props.history.push("/user")
                 }
             }
@@ -47,8 +46,6 @@ const LoginPage = (props) => {
         } else if(loginValue.password.length < 1) {
             setErrorMsg("Please enter Password.");
         }
-
-        console.log(allUsers, 'loging')
     }
         
     return (
@@ -91,10 +88,4 @@ const LoginPage = (props) => {
     
 }
 
-const mapStateToProps = (state) => {
-    console.log(state.auth, 'state.auth')
-
-    return { state: state.auth };
-};
-
-export default connect(mapStateToProps, { signIn })(LoginPage);
+export default connect(null, { userSignIn, adminSignIn })(LoginPage);
