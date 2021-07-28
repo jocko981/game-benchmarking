@@ -3,7 +3,7 @@
     /* main layout to display nested boxes */
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 240px 240px;
+    grid-template-rows: 300px 300px;
     place-items: center;
     /* decorating */
     
@@ -19,8 +19,8 @@
     /* background-color:rgb(216, 176, 253); */
     background-color:rgb(255, 243, 133);
     padding: 10px;
-    height: 81%;
-    width: 81%;
+    height: 90%;
+    width: 93.33%;
     /* decorating */
     border-radius: 3px;
     /* drag style */

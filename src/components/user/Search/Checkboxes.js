@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import _ from "lodash";
+import FilteredGames from "./FilteredGames";
 
 const Checkboxes = ({ games }) => {
     const inputs = ['Won Award', 'Single Player', 'Violence'];
@@ -9,12 +10,12 @@ const Checkboxes = ({ games }) => {
     const [checkedInputs, setCheckedInputs] = useState(new Array(inputs.length).fill(false));
     const [checkedTypes, setCheckedTypes] = useState(new Array(types.length).fill(false));
     const [checkedSorts, setCheckedSorts] = useState(new Array(sorts.length).fill(false));
-    const [filterGames, setFilterGames] = useState(games);
+    const [filteredGames, setFilteredGames] = useState(games);
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
-        setFilterGames(games)
-    },[games])
+        setFilteredGames(games)
+    }, [games])
 
     const handleSearchChange = (event) => {
         const newValue = event.target.value;
@@ -74,7 +75,6 @@ const Checkboxes = ({ games }) => {
             return arr;
         }
     }
-
     useEffect(() => {
         //Filter options updated so apply all filters here
         let result = games;
@@ -85,7 +85,7 @@ const Checkboxes = ({ games }) => {
         result = handleRatingSort(result);
         result = handlePlayersSort(result);
         result = filtersearchName(result);
-        setFilterGames(result);
+        setFilteredGames(result);
     }, [checkedInputs, checkedTypes, checkedSorts, searchTerm]);
 
     const handleInputs = (position) => {
@@ -161,25 +161,7 @@ const Checkboxes = ({ games }) => {
                 </div>
             </div>
 
-            <div className="filtered_games">
-                <div className="ui celled list">
-
-                    {filterGames.map((item, index) => {
-                        return (
-                            <div className="item" key={item.ID}>
-                                <div className="header">
-                                    {item.name}
-                                </div>
-                                <div className="description">
-                                    <div>Rating: {item.rating}</div>
-                                    <div>Global players: {item.num_of_players_global}</div>
-                                </div>
-                            </div>
-                        );
-                    })}
-
-                </div>
-            </div>
+            <FilteredGames filteredGames={filteredGames} />
         </>
     );
 }

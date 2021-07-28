@@ -7,15 +7,6 @@ import { adminSignOut } from "../../../actions";
 
 const SidebarAdmin = (props) => {
     const [storage] = useState(localStorage.getItem('adminData') || '');
-
-    // console.log('useRouteMatch', useRouteMatch())
-    // console.log('useParams', useParams())
-    // console.log('useHistory', useHistory())
-    
-    // console.log('useLocation', useLocation())    // ovo treba
-
-    const path = useLocation().pathname;
-
     const renderUsername = () => {
         if(!storage) {
             return null
@@ -23,6 +14,13 @@ const SidebarAdmin = (props) => {
         const parsedData = JSON.parse(storage);
         return `Welcome: ${parsedData.name}`
     }
+
+    // console.log('useRouteMatch', useRouteMatch())
+    // console.log('useParams', useParams())
+    // console.log('useHistory', useHistory())
+    
+    // console.log('useLocation', useLocation())    // ovo treba
+    const path = useLocation().pathname;
 
     return (
         <div className="sidebar-admin">

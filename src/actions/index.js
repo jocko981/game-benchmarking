@@ -145,8 +145,10 @@ export const editUser = (id, formValues) => async (dispatch) => {
 //                       LOGIN
 
 export const userSignIn = (userData) => {
+    localStorage.removeItem('userData');
     const userLoggedData = { name: userData.name, role: userData.role };
-    localStorage.setItem('userData', JSON.stringify(userLoggedData));
+    const data = JSON.stringify(userLoggedData);
+    localStorage.setItem('userData', data);
 
     // console.log('action call signIn USER', JSON.stringify(userLoggedData))
 
@@ -155,6 +157,19 @@ export const userSignIn = (userData) => {
         payload: userLoggedData
     };
 };
+export const adminSignIn = (userData) => {
+    localStorage.removeItem('adminData');
+    const adminLoggedData = { name: userData.name, role: userData.role };
+    const data = JSON.stringify(adminLoggedData);
+    localStorage.setItem('adminData', data);
+
+    // console.log('action call signIn ADMIN', JSON.stringify(adminLoggedData))
+    return {
+        type: SIGN_IN_ADMIN,
+        payload: adminLoggedData
+    };
+};
+
 export const userSignOut = () => {
     localStorage.removeItem('userData');
 
@@ -162,17 +177,6 @@ export const userSignOut = () => {
     
     return {
         type: SIGN_OUT_USER
-    };
-};
-
-export const adminSignIn = (userData) => {
-    const adminLoggedData = { name: userData.name, role: userData.role };
-    localStorage.setItem('adminData', JSON.stringify(adminLoggedData));
-
-    // console.log('action call signIn ADMIN', JSON.stringify(adminLoggedData))
-    return {
-        type: SIGN_IN_ADMIN,
-        payload: adminLoggedData
     };
 };
 export const adminSignOut = () => {

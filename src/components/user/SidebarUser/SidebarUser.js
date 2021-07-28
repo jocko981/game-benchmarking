@@ -6,11 +6,7 @@ import { connect } from "react-redux";
 import { userSignOut } from "../../../actions";
 
 const SidebarUser = (props) => {
-    const [active, setActive] = useState([1, 0, 0, 0, 0]);
     const [storage] = useState(localStorage.getItem('userData') || '');
-    
-    const path = useLocation().pathname;
-    
     const renderUsername = () => {
         if(!storage) {
             return null
@@ -18,6 +14,8 @@ const SidebarUser = (props) => {
         const parsedData = JSON.parse(storage);
         return `Welcome: ${parsedData.name}`
     }
+
+    const path = useLocation().pathname;
     
     return (
         <div className="sidebar-user">

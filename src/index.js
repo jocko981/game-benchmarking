@@ -41,7 +41,27 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk))); /
     
       { "name": "League of Legends", "ID": 7, "num_of_players_favourite": 11000, "price": 50, "type": "MOBA", "num_of_players_global": 2400000, "rating": 7.7, 
       "num_of_players_2015": 1150000, "num_of_players_2016": 1450000, "num_of_players_2017": 2510000, "num_of_players_2018": 2560600, "num_of_players_2019": 2650000, "num_of_players_2020": 2677000,
-      "year_published": 2012, "platform": "steam", "violence": 0, "won_award": 1, "single_player": 0}]`
+      "year_published": 2012, "platform": "steam", "violence": 0, "won_award": 1, "single_player": 0},
+    
+      { "name": "League of Dravens", "ID": 9, "num_of_players_favourite": 11000, "price": 50, "type": "MOBA", "num_of_players_global": 2400000, "rating": 7.0, 
+      "num_of_players_2015": 1150000, "num_of_players_2016": 1450000, "num_of_players_2017": 2510000, "num_of_players_2018": 2560600, "num_of_players_2019": 2650000, "num_of_players_2020": 2677000,
+      "year_published": 2012, "platform": "steam", "violence": 0, "won_award": 1, "single_player": 0},
+    
+      { "name": "Warcraft III", "ID": 10, "num_of_players_favourite": 11000, "price": 50, "type": "MOBA", "num_of_players_global": 2400000, "rating": 8.8, 
+      "num_of_players_2015": 1150000, "num_of_players_2016": 1450000, "num_of_players_2017": 2510000, "num_of_players_2018": 2560600, "num_of_players_2019": 2650000, "num_of_players_2020": 2677000,
+      "year_published": 2012, "platform": "steam", "violence": 0, "won_award": 1, "single_player": 0},
+    
+      { "name": "Warframe", "ID": 11, "num_of_players_favourite": 11000, "price": 45, "type": "MMORPG", "num_of_players_global": 2400000, "rating": 9.0, 
+      "num_of_players_2015": 1150000, "num_of_players_2016": 1450000, "num_of_players_2017": 2510000, "num_of_players_2018": 2560600, "num_of_players_2019": 2650000, "num_of_players_2020": 2677000,
+      "year_published": 2012, "platform": "steam", "violence": 1, "won_award": 1, "single_player": 0},
+    
+      { "name": "FIFA", "ID": 12, "num_of_players_favourite": 11000, "price": 50, "type": "MOBA", "num_of_players_global": 2400000, "rating": 7.7, 
+      "num_of_players_2015": 1150000, "num_of_players_2016": 1450000, "num_of_players_2017": 2510000, "num_of_players_2018": 2560600, "num_of_players_2019": 2650000, "num_of_players_2020": 2677000,
+      "year_published": 2012, "platform": "steam", "violence": 0, "won_award": 0, "single_player": 1},
+    
+      { "name": "NBA 2K18", "ID": 14, "num_of_players_favourite": 11000, "price": 50, "type": "MOBA", "num_of_players_global": 2400000, "rating": 7.9, 
+      "num_of_players_2015": 1150000, "num_of_players_2016": 1450000, "num_of_players_2017": 2510000, "num_of_players_2018": 2560600, "num_of_players_2019": 2650000, "num_of_players_2020": 2677000,
+      "year_published": 2012, "platform": "steam", "violence": 0, "won_award": 0, "single_player": 1}]`
     );
 
 ReactDOM.render(

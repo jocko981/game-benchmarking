@@ -23,6 +23,8 @@ class Search extends React.Component {
 
                     <Checkboxes games={this.props.games} />
 
+                    {/* <Pagination defaultActivePage={1} totalPages={5} /> */}
+
                 </div>
             </div>
         );

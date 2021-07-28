@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Switch, Redirect, Router } from "react-router-dom";
 import history from "../history";
 import { DndProvider } from "react-dnd";
@@ -25,62 +25,70 @@ import UserShow from "../components/admin/Users/UserShow";
 import UserDelete from "../components/admin/Users/UserDelete";
 import UserCreateForm from "../components/admin/Users/UserCreateForm";
 import UserEditForm from "../components/admin/Users/UserEditForm";
+// error pages
+import ErrorPage404 from "../components/errorPages/ErrorPage404";
 
 const App = () => {
-  useEffect(() => {
-    // used to setLocalStorage here.. now its at index.js
+  const [isAdminLogged] = useState(localStorage.getItem('adminData') || '');
+  const [isUserLogged] = useState(localStorage.getItem('userData') || '');
 
-    // if(localStorage.getItem('allGames') || localStorage.getItem('allUsers')) {
-    //   return null
-    // }
-  }, [])
-
-
-  // <Route exact path="/" render={() => (
-  //   loggedIn ? (
-  //     <Redirect to="/"/>
-  //   ) : (
-  //     <Redirect to="/login"/>
-  //   )
-  // )}/>
+  const AdminPrivateRoute = ({ component: Component, ...rest }) => {
+    return <Route {...rest} render={(props) => {
+      return isAdminLogged 
+      ? <Component {...props} /> 
+      : <Redirect to="/login" />
+    }} />
+  }
+  const UserPrivateRoute = ({ component: Component, ...rest }) => {
+    return <Route {...rest} render={(props) => {
+      return isUserLogged 
+      ? <Component {...props} /> 
+      : <Redirect to={{
+        pathname: "/login",
+        state: { from: props.location }
+      }} />
+    }} />
+  }
 
   return (
     <DndProvider backend={HTML5Backend}>
       <Router history={history}>
         
         <Switch>
+          <Redirect exact from="/user" to="/user/dashboard" />
           <Redirect exact from="/" to="/login" />
 
           <Route exact path="/login" component={LoginPage} />
-          <Route path="/user" component={SidebarUser} /> {/* not 'exact' */}
-          <Route path="/admin" component={SidebarAdmin} /> {/* not 'exact' */}
+
+          <UserPrivateRoute path="/user" component={SidebarUser} /> {/* not 'exact' */}
+          
+          <AdminPrivateRoute path="/admin" component={SidebarAdmin} /> {/* not 'exact' */}
         </Switch>
 
         {/* USER page Nav handle */}
         <Switch>
-          <Redirect exact from="/user" to="/user/dashboard" />
 
-          <Route exact path="/user/dashboard" component={Dashboard} />
-          <Route exact path="/user/benchmark" component={Benchmark} />
-          <Route exact path="/user/charts" component={Charts} />
-          <Route exact path="/user/search" component={Search} />
-          <Route exact path="/user/donate" component={Donate} />
+          <UserPrivateRoute exact path="/user/dashboard" component={Dashboard} />
+          <UserPrivateRoute exact path="/user/benchmark" component={Benchmark} />
+          <UserPrivateRoute exact path="/user/charts" component={Charts} />
+          <UserPrivateRoute exact path="/user/search" component={Search} />
+          <UserPrivateRoute exact path="/user/donate" component={Donate} />
         </Switch>
         {/* ADMIN page Nav handle */}
         <Switch>
           <Redirect exact from="/admin" to="/admin/games" />
 
-          <Route exact path="/admin/games/delete/:id" component={GameDelete} />
-          <Route exact path="/admin/games/edit/:id" component={GameEditForm} />
-          <Route exact path="/admin/games/new" component={GameCreateForm} />
-          <Route exact path="/admin/games/:id" component={GameShow} />
-          <Route exact path="/admin/games" component={GameList} />
+          <AdminPrivateRoute exact path="/admin/games/delete/:id" component={GameDelete} />
+          <AdminPrivateRoute exact path="/admin/games/edit/:id" component={GameEditForm} />
+          <AdminPrivateRoute exact path="/admin/games/new" component={GameCreateForm} />
+          <AdminPrivateRoute exact path="/admin/games/:id" component={GameShow} />
+          <AdminPrivateRoute exact path="/admin/games" component={GameList} />
 
-          <Route exact path="/admin/users/delete/:id" component={UserDelete} />
-          <Route exact path="/admin/users/edit/:id" component={UserEditForm} />
-          <Route exact path="/admin/users/new" component={UserCreateForm} />
-          <Route exact path="/admin/users/:id" component={UserShow} />
-          <Route exact path="/admin/users" component={UserList} />
+          <AdminPrivateRoute exact path="/admin/users/delete/:id" component={UserDelete} />
+          <AdminPrivateRoute exact path="/admin/users/edit/:id" component={UserEditForm} />
+          <AdminPrivateRoute exact path="/admin/users/new" component={UserCreateForm} />
+          <AdminPrivateRoute exact path="/admin/users/:id" component={UserShow} />
+          <AdminPrivateRoute exact path="/admin/users" component={UserList} />
         </Switch>
 
       </Router>

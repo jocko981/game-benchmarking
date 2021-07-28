@@ -7,7 +7,7 @@ import BenchmarkTable from "./BenchmarkTable";
 const Benchmark = (props) => {
     useEffect(() => {
         fetchAllGames();
-    }, [fetchAllGames])
+    }, [])
 
     const inputs = ['Single Player', 'Violence', 'Players > 1.500.000', 'Rating > 8', 'Year Published', 'Steam Platform', 'Won Award']; // to local storage this and then map it
 
