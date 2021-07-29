@@ -31,6 +31,8 @@ import ErrorPage404 from "../components/errorPages/ErrorPage404";
 const App = () => {
   const [isAdminLogged] = useState(localStorage.getItem('adminData') || '');
   const [isUserLogged] = useState(localStorage.getItem('userData') || '');
+  console.log(isAdminLogged, 'ADMIN isAdminLogged')
+  console.log(isUserLogged, 'USER isUserLogged')
 
   const AdminPrivateRoute = ({ component: Component, ...rest }) => {
     return <Route {...rest} render={(props) => {
@@ -45,7 +47,9 @@ const App = () => {
       ? <Component {...props} /> 
       : <Redirect to={{
         pathname: "/login",
-        state: { from: props.location }
+        state: { 
+          from: props.location 
+        }
       }} />
     }} />
   }
@@ -55,7 +59,6 @@ const App = () => {
       <Router history={history}>
         
         <Switch>
-          <Redirect exact from="/user" to="/user/dashboard" />
           <Redirect exact from="/" to="/login" />
 
           <Route exact path="/login" component={LoginPage} />
@@ -63,10 +66,14 @@ const App = () => {
           <UserPrivateRoute path="/user" component={SidebarUser} /> {/* not 'exact' */}
           
           <AdminPrivateRoute path="/admin" component={SidebarAdmin} /> {/* not 'exact' */}
-        </Switch>
+          
+          <Route component={ErrorPage404} />
 
+        </Switch>
+        
         {/* USER page Nav handle */}
         <Switch>
+          <Redirect exact from="/user" to="/user/dashboard" />
 
           <UserPrivateRoute exact path="/user/dashboard" component={Dashboard} />
           <UserPrivateRoute exact path="/user/benchmark" component={Benchmark} />
@@ -89,6 +96,7 @@ const App = () => {
           <AdminPrivateRoute exact path="/admin/users/new" component={UserCreateForm} />
           <AdminPrivateRoute exact path="/admin/users/:id" component={UserShow} />
           <AdminPrivateRoute exact path="/admin/users" component={UserList} />
+
         </Switch>
 
       </Router>

@@ -1,13 +1,13 @@
 import React from "react";
 
-const ErrorPage404 = () => {
+const ErrorPage404 = (props) => {
 
     return (
-        <div class="middle aligned column">
+        <div className="middle aligned column">
             <h1>404 page not found</h1>
-            <div class="ui big button">
-                <i class="signup icon"></i>
-                Sign Up
+            <div onClick={() => props.history.push("/login")} className="ui big button">
+                <i className="signup icon"></i>
+                Go back to Login page
             </div>
         </div>
     );
