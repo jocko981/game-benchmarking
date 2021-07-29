@@ -5,7 +5,7 @@ const FilteredGames = ({ filteredGames }) => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [gamesPerPage, setGamesPerPage] = useState(3);
-    
+
     // Get current games
     const indexOfLastGame = currentPage * gamesPerPage;
     const indexOfFirstGame = indexOfLastGame - gamesPerPage;
@@ -13,7 +13,7 @@ const FilteredGames = ({ filteredGames }) => {
     // Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    if(!filteredGames) {
+    if (!filteredGames) {
         return 'Loading...';
     }
     return (
@@ -36,8 +36,8 @@ const FilteredGames = ({ filteredGames }) => {
 
             </div>
 
-            <Pagination 
-                gamesPerPage={gamesPerPage} 
+            <Pagination
+                gamesPerPage={gamesPerPage}
                 NumTotalGames={filteredGames.length}
                 paginate={paginate}
                 currentPage={currentPage}
