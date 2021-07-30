@@ -85,7 +85,6 @@ const Box = (props) => {
                 </div>
             );
 
-
         default:
             return 'No box rendered';
     }

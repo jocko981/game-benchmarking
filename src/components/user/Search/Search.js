@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchAllGames } from "../../../actions";
-import Checkboxes from "./Checkboxes";
+import SearchFilters from "./SearchFilters";
 import "./Search.css";
 
 class Search extends React.Component {
@@ -20,11 +20,7 @@ class Search extends React.Component {
                 <h1>Search</h1>
 
                 <div className="search_wrapper">
-
-                    <Checkboxes games={this.props.games} />
-
-                    {/* <Pagination defaultActivePage={1} totalPages={5} /> */}
-
+                    <SearchFilters games={this.props.games} />
                 </div>
             </div>
         );
