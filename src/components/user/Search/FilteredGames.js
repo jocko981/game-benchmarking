@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import Pagination from "./Pagination";
+import { Pagination, Icon } from 'semantic-ui-react';
 
 const FilteredGames = ({ filteredGames }) => {
-
     const [currentPage, setCurrentPage] = useState(1);
     const [gamesPerPage, setGamesPerPage] = useState(3);
 
@@ -12,6 +11,11 @@ const FilteredGames = ({ filteredGames }) => {
     const currentGames = filteredGames.slice(indexOfFirstGame, indexOfLastGame);
     // Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    // num of pages to show
+    const numberOfPages = [];
+    for (let i = 1; i <= Math.ceil(filteredGames.length / gamesPerPage); i++) {
+        numberOfPages.push(i);
+    }
 
     if (!filteredGames) {
         return 'Loading...';
@@ -37,10 +41,15 @@ const FilteredGames = ({ filteredGames }) => {
             </div>
 
             <Pagination
-                gamesPerPage={gamesPerPage}
-                NumTotalGames={filteredGames.length}
-                paginate={paginate}
-                currentPage={currentPage}
+                activePage={currentPage}
+                // defaultActivePage={currentPage}
+                ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
+                firstItem={null}
+                lastItem={null}
+                prevItem={{ content: <Icon name='angle left' />, icon: true }}
+                nextItem={{ content: <Icon name='angle right' />, icon: true }}
+                totalPages={numberOfPages.length}
+                onPageChange={(event, data) => paginate(data.activePage)}
             />
         </div>
     );

@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const BenchmarkTable = ({ games, checkedProps }) => {
+    useEffect(() => {
+
+    },[games, checkedProps]);
+    
     return (
         <table className="ui definition celled table">
             <thead>

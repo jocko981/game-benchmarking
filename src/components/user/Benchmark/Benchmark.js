@@ -4,71 +4,85 @@ import { connect } from "react-redux";
 import { fetchAllGames } from "../../../actions";
 import BenchmarkTable from "./BenchmarkTable";
 
-const Benchmark = (props) => {
-    useEffect(() => {
-        fetchAllGames();
-    }, [])
+class Benchmark extends React.Component {
+    constructor(props) {
+        super(props);
 
-    const inputs = ['Single Player', 'Violence', 'Players > 1.500.000', 'Rating > 8', 'Year Published', 'Steam Platform', 'Won Award']; // to local storage this and then map it
+        const inputs = ['Single Player', 'Violence', 'Players > 1.500.000', 'Rating > 8', 'Year Published', 'Steam Platform', 'Won Award']; // to local storage this and then map it
+        // localStorage.setItem('benchmark', JSON.stringify(inputs));
 
-    // localStorage.setItem('benchmark', JSON.stringify(inputs));
+        const response = localStorage.getItem('benchmark');
+        const data = JSON.parse(response);
+        // const [checkedState, setCheckedState] = useState(data.map(item => item.checked));
+        // const [checkedProps, setCheckedProps] = useState(data);
 
-    const response = localStorage.getItem('benchmark');
-    const data = JSON.parse(response);
-    const [checkedState, setCheckedState] = useState(data.map(item => item.checked));
-    const [checkedProps, setCheckedProps] = useState(data);
-
-    const handleChange = (position) => {
-        const updateCheckedState = checkedState.map((item, index) => index === position ? !item : item);
-        setCheckedState(updateCheckedState);
+        this.state = {
+            checkedState: data.map(item => item.checked),
+            checkedProps: data,
+            inputs: inputs
+        };
     }
-    const saveCriteria = () => {
-        const gg = checkedState.map((item,index) => {
-            return {name: item, checked: checkedState[index]}
+    componentDidMount() {
+        this.props.fetchAllGames();
+    }
+
+    // functions
+    handleChange = (position) => {
+        const updateCheckedState = this.state.checkedState.map((item, index) => index === position ? !item : item);
+        this.setState({ checkedState: updateCheckedState });
+    }
+    saveCriteria = () => {
+        const gg = this.state.checkedState.map((item, index) => {
+            return { name: item, checked: this.state.checkedState[index] }
         });
         // console.log(_.mapKeys(gg, "name"), 'gg')
         localStorage.setItem('benchmark', JSON.stringify(gg))
-        
-        setCheckedProps(gg);
+
+        this.setState({ checkedProps: gg });
     }
 
-    return (
-        <div className="content-page-wrapper">
-            <h1>Benchmark</h1>
-            <div>
-                SELECT CRITERIA DIV for DROPDOWN to Open/Close
+    render() {
+
+        return (
+            <div className="content-page-wrapper">
+                <h1>Benchmark</h1>
+                <div>
+                    SELECT CRITERIA DIV for DROPDOWN to Open/Close
+                </div>
+
+                <div className="criteria_div">
+                    {this.state.inputs.map((item, index) => {
+                        return (
+                            <div className="criteria" key={index}>
+                                <input type='checkbox'
+                                    checked={this.state.checkedState[index]}
+                                    name={item}
+                                    value={item}
+                                    id={index}
+                                    onChange={() => this.handleChange(index)}
+                                />
+                                <label htmlFor={index}>{item}</label>
+
+                                {this.state.checkedProps[index].checked !== this.state.checkedState[index] && <span> - [ criteria changed ]</span>}
+                            </div>
+                        );
+                    })}
+                </div>
+
+                <div onClick={this.saveCriteria} className="ui button primary">Save Criteria</div>
+                {/* {inputs.map((item, index) => checkedProps[index].checked !== checkedState[index] && <span> Click to Save new criterias :) </span>)} */}
+
+                <div className="criteria_table">
+                    <BenchmarkTable games={this.props.games} checkedProps={this.state.checkedProps} />
+                </div>
+
             </div>
-
-            <div className="criteria_div">
-                {inputs.map((item, index) => {
-                    return (
-                        <div className="criteria" key={index}>
-                            <input type='checkbox'
-                                checked={checkedState[index]}
-                                name={item}
-                                value={item}
-                                id={index}
-                                onChange={() => handleChange(index)}
-                            />
-                            <label htmlFor={index}>{item}</label>
-                            
-                            {checkedProps[index].checked !== checkedState[index] && <span> - [ criteria changed ]</span>}
-                        </div>
-                    );
-                })}
-            </div>
-
-            <div onClick={saveCriteria} className="ui button primary">Save Criteria</div>
-
-            <div className="criteria_table">
-                <BenchmarkTable games={props.games} checkedProps={checkedProps} />
-            </div>
-
-        </div>
-    );
+        );
+    }
 }
 
 const mapStateToProps = (state) => {
+    console.log(state, 'state')
     return {
         games: Object.values(state.games)
     };
