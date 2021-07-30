@@ -5,7 +5,6 @@ const Box = (props) => {
     switch(props.id) {
         case 1:
             return (
-                // ovaj div da ima ref={drag} i da ima conditional className. RED je DIV dok ga dragujem
                 <div
                   className="box"
                   draggable={props.draggable}
