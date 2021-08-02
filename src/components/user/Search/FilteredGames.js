@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Pagination, Icon } from 'semantic-ui-react';
 
 const FilteredGames = ({ filteredGames }) => {
@@ -17,6 +17,9 @@ const FilteredGames = ({ filteredGames }) => {
         numberOfPages.push(i);
     }
 
+    useEffect(() => {
+        setCurrentPage(1);
+    },[filteredGames]) // set Pagination page to 1. on every filteredGames change 
     if (!filteredGames) {
         return 'Loading...';
     }
@@ -26,7 +29,7 @@ const FilteredGames = ({ filteredGames }) => {
 
                 {currentGames.map((item, index) => {
                     return (
-                        <div className="item" key={item.ID}>
+                        <div className="item" key={index}>
                             <div className="header">
                                 {item.name}
                             </div>
