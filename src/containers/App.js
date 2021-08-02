@@ -34,70 +34,87 @@ const App = () => {
   console.log(isAdminLogged, 'ADMIN isAdminLogged')
   console.log(isUserLogged, 'USER isUserLogged')
 
-  const AdminPrivateRoute = ({ component: Component, ...rest }) => {
+  const AdminPrivateRoute = ({ children, component: Component, ...rest }) => {
     return <Route {...rest} render={(props) => {
       return isAdminLogged 
-      ? <Component {...props} /> 
-      : <Redirect to="/login" />
-    }} />
-  }
-  const UserPrivateRoute = ({ component: Component, ...rest }) => {
-    return <Route {...rest} render={(props) => {
-      return isUserLogged 
-      ? <Component {...props} /> 
+      ? <> 
+        <SidebarAdmin /> 
+        <Component {...props} /> 
+      </> 
       : <Redirect to={{
         pathname: "/login",
-        state: { 
-          from: props.location 
-        }
+        state: { from: props.location }
+      }} />
+    }} />
+  }
+  const UserPrivateRoute = ({ children, component: Component, ...rest }) => {
+    return <Route {...rest} render={(props) => {
+      return isUserLogged 
+      ? <> 
+        <SidebarUser /> 
+        <Component {...props} /> 
+      </> 
+      : <Redirect to={{
+        pathname: "/login",
+        state: { from: props.location }
       }} />
     }} />
   }
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <Router history={history}>
-        
+      <Router history={history}>        
         <Switch>
-          <Redirect exact from="/" to="/login" />
+          <Redirect exact from="/" to="/login" /> {/* Redirect --> */}
 
           <Route exact path="/login" component={LoginPage} />
-
-          <UserPrivateRoute path="/user" component={SidebarUser} /> {/* not 'exact' */}
           
-          <AdminPrivateRoute path="/admin" component={SidebarAdmin} /> {/* not 'exact' */}
+          <Redirect exact from="/user" to="/user/dashboard" /> {/* Redirect --> */}
+
+        {/* USER page Nav handle */}
+          <UserPrivateRoute exact path="/user/dashboard" component={Dashboard} />
+
+          <UserPrivateRoute exact path="/user/benchmark" component={Benchmark} />
+          
+          <UserPrivateRoute exact path="/user/charts" component={Charts} />
+
+          <UserPrivateRoute exact path="/user/search" component={Search} />
+
+          <UserPrivateRoute exact path="/user/donate" component={Donate} />
+
+        {/* ADMIN page Nav handle */}
+          <Redirect exact from="/admin" to="/admin/games" /> {/* Redirect --> */}
+
+          <AdminPrivateRoute exact path="/admin/games/delete/:id" component={GameDelete} />
+          
+          <AdminPrivateRoute exact path="/admin/games/edit/:id" component={GameEditForm} />
+
+          <AdminPrivateRoute exact path="/admin/games/new" component={GameCreateForm} />
+
+          <AdminPrivateRoute exact path="/admin/games/:id" component={GameShow} />
+
+          <AdminPrivateRoute exact path="/admin/games" component={GameList} />
+
+          <AdminPrivateRoute exact path="/admin/users/delete/:id" component={UserDelete} />
+
+          <AdminPrivateRoute exact path="/admin/users/edit/:id" component={UserEditForm} />
+
+          <AdminPrivateRoute exact path="/admin/users/new" component={UserCreateForm} />
+
+          <AdminPrivateRoute exact path="/admin/users/:id" component={UserShow} />
+          
+          <AdminPrivateRoute exact path="/admin/users" component={UserList} />
           
           <Route component={ErrorPage404} />
 
         </Switch>
-        
-        {/* USER page Nav handle */}
-        <Switch>
-          <Redirect exact from="/user" to="/user/dashboard" />
 
-          <UserPrivateRoute exact path="/user/dashboard" component={Dashboard} />
-          <UserPrivateRoute exact path="/user/benchmark" component={Benchmark} />
-          <UserPrivateRoute exact path="/user/charts" component={Charts} />
-          <UserPrivateRoute exact path="/user/search" component={Search} />
-          <UserPrivateRoute exact path="/user/donate" component={Donate} />
-        </Switch>
-        {/* ADMIN page Nav handle */}
-        <Switch>
-          <Redirect exact from="/admin" to="/admin/games" />
-
-          <AdminPrivateRoute exact path="/admin/games/delete/:id" component={GameDelete} />
-          <AdminPrivateRoute exact path="/admin/games/edit/:id" component={GameEditForm} />
-          <AdminPrivateRoute exact path="/admin/games/new" component={GameCreateForm} />
-          <AdminPrivateRoute exact path="/admin/games/:id" component={GameShow} />
-          <AdminPrivateRoute exact path="/admin/games" component={GameList} />
-
-          <AdminPrivateRoute exact path="/admin/users/delete/:id" component={UserDelete} />
-          <AdminPrivateRoute exact path="/admin/users/edit/:id" component={UserEditForm} />
-          <AdminPrivateRoute exact path="/admin/users/new" component={UserCreateForm} />
-          <AdminPrivateRoute exact path="/admin/users/:id" component={UserShow} />
-          <AdminPrivateRoute exact path="/admin/users" component={UserList} />
-
-        </Switch>
+        {/* ideja 
+          <Route path="/manatee">
+            <Comp1 />
+            <Comp2 />
+          </Route>
+        */}
 
       </Router>
     </DndProvider>

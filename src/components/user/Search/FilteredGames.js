@@ -19,7 +19,8 @@ const FilteredGames = ({ filteredGames }) => {
 
     useEffect(() => {
         setCurrentPage(1);
-    },[filteredGames]) // set Pagination page to 1. on every filteredGames change 
+    },[filteredGames.length]) // set Pagination page to 1. after filtering Games
+
     if (!filteredGames) {
         return 'Loading...';
     }
