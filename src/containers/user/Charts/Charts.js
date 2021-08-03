@@ -1,8 +1,9 @@
 import React from "react";
 import "./Charts.css";
-import ReactApexChart from "react-apexcharts";
 import { connect } from "react-redux";
 import { fetchAllGames } from "../../../actions";
+import SidebarUser from "../../../components/SidebarUser/SidebarUser";
+import ReactApexChart from "react-apexcharts";
 
 class Charts extends React.Component {
     constructor(props) {
@@ -36,6 +37,7 @@ class Charts extends React.Component {
 
         return (
             <div className="content-page-wrapper">
+                <SidebarUser />
                 <h1>Charts</h1>
                 
                 <div className="chart_wrapper">

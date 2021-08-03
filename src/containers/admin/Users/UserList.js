@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchAllUsers } from "../../../actions";
+import SidebarAdmin from "../../../components/SidebarAdmin/SidebarAdmin";
 
 class UserList extends React.Component {
     componentDidMount() {
@@ -60,6 +61,7 @@ class UserList extends React.Component {
     render() {
         return (
             <div className="content-page-wrapper">
+                <SidebarAdmin />
                 <h1>Users</h1>
 
                 <div className="ui celled list">

@@ -3,7 +3,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchGame, editGame } from "../../../actions";
 import GameForm from "./GameForm";
-import Loader from "../../Loaders/Loader";
+import Loader from "../../../components/Loaders/Loader";
+import SidebarAdmin from "../../../components/SidebarAdmin/SidebarAdmin";
 
 class GameEditForm extends Component {
     componentDidMount() {
@@ -26,6 +27,7 @@ class GameEditForm extends Component {
 
         return (
             <div className="content-page-wrapper">
+                <SidebarAdmin />
                 <h3>Edit a Game</h3>
                 <GameForm
                     initialValues={_.pick(this.props.game, 'name', 'ID', 'num_of_players_2015', 'num_of_players_2016', 'num_of_players_2017', 'num_of_players_2018', 'num_of_players_2019', 'num_of_players_2020', 'num_of_players_favourite', 'num_of_players_global', 'platform', 'price', 'rating', 'single_player', 'type', 'violence', 'won_award', 'year_published')}

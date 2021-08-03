@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchUser, deleteUser } from "../../../actions";
 import history from "../../../history";
-import Loader from "../../Loaders/Loader";
+import Loader from "../../../components/Loaders/Loader";
 
-import ModalDeleteUser from "../Modals/ModalDeleteUser";
+import ModalDeleteUser from "../../../components/Modals/ModalDeleteUser";
 
 class UserDelete extends Component {
     componentDidMount() {

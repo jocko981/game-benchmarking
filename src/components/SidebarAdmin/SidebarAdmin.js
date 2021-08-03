@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./SidebarAdmin.css";
 import { connect } from "react-redux";
-import { adminSignOut } from "../../../actions";
+import { adminSignOut } from "../../actions";
 
 const SidebarAdmin = (props) => {
     const [storage] = useState(localStorage.getItem('adminData') || '');
@@ -27,8 +27,8 @@ const SidebarAdmin = (props) => {
             <h1>ADMIN</h1>
             <p>{renderUsername()}</p>
             
-            <Link to="/admin/games" className={path === '/admin/games' ? 'active' : ''}><span>Games</span></Link>
-            <Link to="/admin/users" className={path === '/admin/users' ? 'active' : ''}><span>Users</span></Link>
+            <Link to="/admin/games" className={path === '/admin/games' || path === '/admin/games/' ? 'active' : ''}><span>Games</span></Link>
+            <Link to="/admin/users" className={path === '/admin/users' || path === '/admin/users/' ? 'active' : ''}><span>Users</span></Link>
 
             <div onClick={props.adminSignOut} className="ui button">Sign out</div>
         </div>

@@ -33,8 +33,8 @@ export const fetchGame = (id) => async (dispatch) => {
 
     if(data === undefined) {
         return null 
-    } else // jel treba ovde else ??
-    // ovde kada nema Url za specific game onda smao izbaci Loader komponentu i vrti se..
+    } else
+    // ovde kada nema Url za specific game
 
     // ako je url /games/77 a game.ID==77 ne postoji onda return null
 

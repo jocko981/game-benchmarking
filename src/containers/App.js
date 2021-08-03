@@ -6,27 +6,25 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 import LoginPage from "./LoginPage/LoginPage";
 // user pages
-import SidebarUser from "../components/user/SidebarUser/SidebarUser";
-import Dashboard from "../components/user/Dashboard/Dashboard";
-import Benchmark from "../components/user/Benchmark/Benchmark";
-import Charts from "../components/user/Charts/Charts";
-import Search from "../components/user/Search/Search";
-import Donate from "../components/user/Donate/Donate";
+import Dashboard from "../containers/user/Dashboard/Dashboard";
+import Benchmark from "../containers/user/Benchmark/Benchmark";
+import Charts from "../containers/user/Charts/Charts";
+import Search from "../containers/user/Search/Search";
+import Donate from "../containers/user/Donate/Donate";
 // admin pages
-import SidebarAdmin from "../components/admin/SidebarAdmin/SidebarAdmin";
-import GameList from "../components/admin/Games/GameList";
-import GameShow from "../components/admin/Games/GameShow";
-import GameDelete from "../components/admin/Games/GameDelete";
-import GameEditForm from "../components/admin/Games/GameEditForm";
-import GameCreateForm from "../components/admin/Games/GameCreateForm";
+import GameList from "../containers/admin/Games/GameList";
+import GameShow from "../containers/admin/Games/GameShow";
+import GameDelete from "../containers/admin/Games/GameDelete";
+import GameEditForm from "../containers/admin/Games/GameEditForm";
+import GameCreateForm from "../containers/admin/Games/GameCreateForm";
 //
-import UserList from "../components/admin/Users/UserList";
-import UserShow from "../components/admin/Users/UserShow";
-import UserDelete from "../components/admin/Users/UserDelete";
-import UserCreateForm from "../components/admin/Users/UserCreateForm";
-import UserEditForm from "../components/admin/Users/UserEditForm";
+import UserList from "../containers/admin/Users/UserList";
+import UserShow from "../containers/admin/Users/UserShow";
+import UserDelete from "../containers/admin/Users/UserDelete";
+import UserCreateForm from "../containers/admin/Users/UserCreateForm";
+import UserEditForm from "../containers/admin/Users/UserEditForm";
 // error pages
-import ErrorPage404 from "../components/errorPages/ErrorPage404";
+import ErrorPage404 from "../components/ErrorPages/ErrorPage404";
 
 const App = () => {
   const [isAdminLogged] = useState(localStorage.getItem('adminData') || '');
@@ -37,10 +35,7 @@ const App = () => {
   const AdminPrivateRoute = ({ children, component: Component, ...rest }) => {
     return <Route {...rest} render={(props) => {
       return isAdminLogged 
-      ? <> 
-        <SidebarAdmin /> 
-        <Component {...props} /> 
-      </> 
+      ? <Component {...props} /> 
       : <Redirect to={{
         pathname: "/login",
         state: { from: props.location }
@@ -50,10 +45,7 @@ const App = () => {
   const UserPrivateRoute = ({ children, component: Component, ...rest }) => {
     return <Route {...rest} render={(props) => {
       return isUserLogged 
-      ? <> 
-        <SidebarUser /> 
-        <Component {...props} /> 
-      </> 
+      ? <Component {...props} /> 
       : <Redirect to={{
         pathname: "/login",
         state: { from: props.location }
@@ -65,48 +57,31 @@ const App = () => {
     <DndProvider backend={HTML5Backend}>
       <Router history={history}>        
         <Switch>
-          <Redirect exact from="/" to="/login" /> {/* Redirect --> */}
-
-          <Route exact path="/login" component={LoginPage} />
-          
-          <Redirect exact from="/user" to="/user/dashboard" /> {/* Redirect --> */}
+           <Redirect exact from="/" to="/login" /> {/* Redirect --> */}
+          <Route exact path="/login" component={LoginPage} /> 
 
         {/* USER page Nav handle */}
+           <Redirect exact from="/user" to="/user/dashboard" /> {/* Redirect --> */}
           <UserPrivateRoute exact path="/user/dashboard" component={Dashboard} />
-
-          <UserPrivateRoute exact path="/user/benchmark" component={Benchmark} />
-          
+          <UserPrivateRoute exact path="/user/benchmark" component={Benchmark} />          
           <UserPrivateRoute exact path="/user/charts" component={Charts} />
-
           <UserPrivateRoute exact path="/user/search" component={Search} />
-
           <UserPrivateRoute exact path="/user/donate" component={Donate} />
 
         {/* ADMIN page Nav handle */}
-          <Redirect exact from="/admin" to="/admin/games" /> {/* Redirect --> */}
-
-          <AdminPrivateRoute exact path="/admin/games/delete/:id" component={GameDelete} />
-          
+           <Redirect exact from="/admin" to="/admin/games" /> {/* Redirect --> */}
+          <AdminPrivateRoute exact path="/admin/games/delete/:id" component={GameDelete} />          
           <AdminPrivateRoute exact path="/admin/games/edit/:id" component={GameEditForm} />
-
           <AdminPrivateRoute exact path="/admin/games/new" component={GameCreateForm} />
-
           <AdminPrivateRoute exact path="/admin/games/:id" component={GameShow} />
-
           <AdminPrivateRoute exact path="/admin/games" component={GameList} />
-
           <AdminPrivateRoute exact path="/admin/users/delete/:id" component={UserDelete} />
-
           <AdminPrivateRoute exact path="/admin/users/edit/:id" component={UserEditForm} />
-
           <AdminPrivateRoute exact path="/admin/users/new" component={UserCreateForm} />
-
-          <AdminPrivateRoute exact path="/admin/users/:id" component={UserShow} />
-          
+          <AdminPrivateRoute exact path="/admin/users/:id" component={UserShow} />          
           <AdminPrivateRoute exact path="/admin/users" component={UserList} />
-          
-          <Route component={ErrorPage404} />
 
+          <Route component={ErrorPage404} />
         </Switch>
 
         {/* ideja 

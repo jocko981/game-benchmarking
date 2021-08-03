@@ -26,13 +26,12 @@ const LoginPage = (props) => {
 
     const onLoginSubmit = (e) => {
         e.preventDefault();
-
         const allUsers = JSON.parse(localStorage.getItem('allUsers'));
 
-        allUsers.filter((userData) => {
+        allUsers.find((userData) => {
             if (loginValue.username === userData.name && loginValue.password === userData.password) {
                 // if (admin === true) => push to /admin else push to /user
-                console.log(userData, 'userdata login')
+
                 if (userData.role === "admin") {
                     props.adminSignIn(userData); // action call
                     props.history.push("/admin")

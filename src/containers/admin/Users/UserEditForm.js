@@ -2,8 +2,9 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchUser, editUser } from "../../../actions";
+import SidebarAdmin from "../../../components/SidebarAdmin/SidebarAdmin";
 import UserForm from "./UserForm";
-import Loader from "../../Loaders/Loader";
+import Loader from "../../../components/Loaders/Loader";
 
 class UserEditForm extends Component {
     componentDidMount() {
@@ -26,6 +27,7 @@ class UserEditForm extends Component {
 
         return (
             <div className="content-page-wrapper">
+                <SidebarAdmin />
                 <h3>Edit a User</h3>
                 <UserForm
                     initialValues={_.pick(this.props.user, 'name', 'id', 'password', 'role')} 

@@ -1,4 +1,9 @@
 
+.wrapper_404 {
+    padding: 3%;
+}
+
+/* MAKE 404 page OVER everycomponent */
 /* .middle.aligned.column {
     background-color: white;
     height: 200vh;

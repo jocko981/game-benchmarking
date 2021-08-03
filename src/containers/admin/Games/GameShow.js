@@ -2,12 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchGame } from "../../../actions";
 import GamePdf from "./GamePdf";
-import Loader from "../../Loaders/Loader";
+import Loader from "../../../components/Loaders/Loader";
+import SidebarAdmin from "../../../components/SidebarAdmin/SidebarAdmin";
+import ErrorPage404 from "../../../components/ErrorPages/ErrorPage404";
 
 class GameShow extends React.Component {
 
     componentDidMount() {
         const { id } = this.props.match.params;
+        console.log(this.props.match, 'willMount')
         this.props.fetchGame(id);
     }
 
@@ -15,7 +18,7 @@ class GameShow extends React.Component {
       // this.props.game = undefined, !this.props.game = true
         if(!this.props.game) {
             return (
-              <Loader />
+              <ErrorPage404 />
             );
         }
 
@@ -39,6 +42,7 @@ class GameShow extends React.Component {
 
         return (
             <div className="content-page-wrapper">
+              <SidebarAdmin />
                 <table className="ui unstackable table">
                   <thead>
                     <tr>
@@ -128,7 +132,7 @@ class GameShow extends React.Component {
                     </tr>
                   </tbody>
                 </table>
-                
+
                 <GamePdf />
             </div>
         );

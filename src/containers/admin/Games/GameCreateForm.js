@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createGame } from "../../../actions";
+import SidebarAdmin from "../../../components/SidebarAdmin/SidebarAdmin";
 import GameForm from "./GameForm";
 
 class GameCreateForm extends Component {
@@ -16,6 +17,7 @@ class GameCreateForm extends Component {
         
         return (
             <div className="content-page-wrapper">
+                <SidebarAdmin />
                 <h1>Game Create</h1>
 
                 <GameForm onSubmit={this.onSubmit} />

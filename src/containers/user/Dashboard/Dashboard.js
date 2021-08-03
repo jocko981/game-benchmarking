@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchAllGames } from "../../../actions";
 import './Dashboard.css';
+import SidebarUser from "../../../components/SidebarUser/SidebarUser";
 import Box from "./Box";
 import DragDrop from "./DragDrop";
 
@@ -100,6 +101,7 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div className="content-page-wrapper">
+        <SidebarUser />
         <h1>Dashboard</h1>
 
         <div className="boxesGroup">

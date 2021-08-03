@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchGame, deleteGame } from "../../../actions";
 import history from "../../../history";
-import Loader from "../../Loaders/Loader";
+import Loader from "../../../components/Loaders/Loader";
 
-import ModalDeleteGame from "../Modals/ModalDeleteGame";
+import ModalDeleteGame from "../../../components/Modals/ModalDeleteGame";
 
 class GameDelete extends Component {
     componentDidMount() {

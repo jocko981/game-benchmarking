@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./SidebarUser.css";
 import { connect } from "react-redux";
-import { userSignOut } from "../../../actions";
+import { userSignOut } from "../../actions";
 
 const SidebarUser = (props) => {
     const [storage] = useState(localStorage.getItem('userData') || '');

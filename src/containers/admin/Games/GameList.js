@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchAllGames } from "../../../actions";
+import SidebarAdmin from "../../../components/SidebarAdmin/SidebarAdmin";
 // import "./GameList.css"
 
 class GameList extends React.Component {
@@ -61,6 +62,7 @@ class GameList extends React.Component {
     render() {
         return (
             <div className="content-page-wrapper">
+                <SidebarAdmin />
                 <h1>Games</h1>
 
                 <div className="ui celled list">

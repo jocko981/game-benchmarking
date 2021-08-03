@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchUser } from "../../../actions";
-import Loader from "../../Loaders/Loader";
+import SidebarAdmin from "../../../components/SidebarAdmin/SidebarAdmin";
+import ErrorPage404 from "../../../components/ErrorPages/ErrorPage404";
 
 class UserShow extends React.Component {
 
@@ -14,16 +15,18 @@ class UserShow extends React.Component {
       // this.props.user = undefined, !this.props.user = true
         if(!this.props.user) {
             return (
-              <Loader />
+              <ErrorPage404 />
             );
+            // <div className="content-page-wrapper">User not found...</div>
         }
 
         const { id, name, role } = this.props.user;
+        console.log(id, 'id from user')
 
         console.log(this.props.user, 'user')
         return (
             <div className="content-page-wrapper">
-
+              <SidebarAdmin />
                 <table className="ui unstackable table">
                   <thead>
                     <tr>

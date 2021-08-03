@@ -2,9 +2,8 @@ import React from "react";
 import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
 import { toast } from "react-toastify";
-
 import "react-toastify/dist/ReactToastify.css";
-import Loader from "../../Loaders/Loader";
+import SidebarUser from "../../../components/SidebarUser/SidebarUser";
 
 toast.configure();
 
@@ -39,6 +38,7 @@ const Donate = () => {
 
     return (
         <div className="content-page-wrapper">
+            <SidebarUser />
             <div className="container">
                 <div className="product">
                     <h1>{product.name}</h1>

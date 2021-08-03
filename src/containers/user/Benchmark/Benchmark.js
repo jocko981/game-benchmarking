@@ -3,6 +3,7 @@ import './Benchmark.css';
 import { connect } from "react-redux";
 import { fetchAllGames } from "../../../actions";
 import BenchmarkTable from "./BenchmarkTable";
+import SidebarUser from "../../../components/SidebarUser/SidebarUser";
 
 class Benchmark extends React.Component {
     constructor(props) {
@@ -45,10 +46,8 @@ class Benchmark extends React.Component {
 
         return (
             <div className="content-page-wrapper">
+                <SidebarUser />
                 <h1>Benchmark</h1>
-                <div>
-                    SELECT CRITERIA DIV for DROPDOWN to Open/Close
-                </div>
 
                 <div className="criteria_div">
                     {this.state.inputs.map((item, index) => {
