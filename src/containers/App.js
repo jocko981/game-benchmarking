@@ -5,13 +5,13 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
 import LoginPage from "./LoginPage/LoginPage";
-// user pages
+//// user pages
 import Dashboard from "../containers/user/Dashboard/Dashboard";
 import Benchmark from "../containers/user/Benchmark/Benchmark";
 import Charts from "../containers/user/Charts/Charts";
 import Search from "../containers/user/Search/Search";
 import Donate from "../containers/user/Donate/Donate";
-// admin pages
+//// admin pages
 import GameList from "../containers/admin/Games/GameList";
 import GameShow from "../containers/admin/Games/GameShow";
 import GameDelete from "../containers/admin/Games/GameDelete";
@@ -23,18 +23,21 @@ import UserShow from "../containers/admin/Users/UserShow";
 import UserDelete from "../containers/admin/Users/UserDelete";
 import UserCreateForm from "../containers/admin/Users/UserCreateForm";
 import UserEditForm from "../containers/admin/Users/UserEditForm";
-// error pages
+//// error pages
 import ErrorPage404 from "../components/ErrorPages/ErrorPage404";
 
 const App = () => {
-  const [isAdminLogged] = useState(localStorage.getItem('adminData') || '');
-  const [isUserLogged] = useState(localStorage.getItem('userData') || '');
-  console.log(isAdminLogged, 'ADMIN isAdminLogged')
-  console.log(isUserLogged, 'USER isUserLogged')
+  // const [isAdminLogged] = useState(localStorage.getItem('adminData') || '');
+  // const [isUserLogged] = useState(localStorage.getItem('userData') || '');
+  // console.log(isAdminLogged, 'ADMIN isAdminLogged')
+  // console.log(isUserLogged, 'USER isUserLogged')
 
+  // Za Guarded Routes: stavili smo uslov ipak za- ako postoji localStorage za 'admin/user' onda prikazi Component ili Redirect.
+  // Sa State ili const nece da radi lepo login. Ovako samo hoce.
+  
   const AdminPrivateRoute = ({ children, component: Component, ...rest }) => {
     return <Route {...rest} render={(props) => {
-      return isAdminLogged 
+      return localStorage.getItem('adminData') 
       ? <Component {...props} /> 
       : <Redirect to={{
         pathname: "/login",
@@ -44,7 +47,7 @@ const App = () => {
   }
   const UserPrivateRoute = ({ children, component: Component, ...rest }) => {
     return <Route {...rest} render={(props) => {
-      return isUserLogged 
+      return localStorage.getItem('userData') 
       ? <Component {...props} /> 
       : <Redirect to={{
         pathname: "/login",

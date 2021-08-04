@@ -145,7 +145,7 @@ export const editUser = (id, formValues) => async (dispatch) => {
 //                       LOGIN
 
 export const userSignIn = (userData) => {
-    localStorage.removeItem('userData');
+    // localStorage.removeItem('userData');
     const userLoggedData = { name: userData.name, role: userData.role };
     const data = JSON.stringify(userLoggedData);
     localStorage.setItem('userData', data);
@@ -158,7 +158,7 @@ export const userSignIn = (userData) => {
     };
 };
 export const adminSignIn = (userData) => {
-    localStorage.removeItem('adminData');
+    // localStorage.removeItem('adminData');
     const adminLoggedData = { name: userData.name, role: userData.role };
     const data = JSON.stringify(adminLoggedData);
     localStorage.setItem('adminData', data);

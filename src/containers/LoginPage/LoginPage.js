@@ -34,10 +34,10 @@ const LoginPage = (props) => {
 
                 if (userData.role === "admin") {
                     props.adminSignIn(userData); // action call
-                    props.history.push("/admin")
+                    props.history.push("/admin");
                 } else {
                     props.userSignIn(userData); // action call
-                    props.history.push("/user")
+                    props.history.push("/user");
                 }
             }
             setErrorMsg("This account does not exist, please try again.")
