@@ -84,6 +84,7 @@ const Checkboxes = ({ games }) => {
         result = handleType(result);
         result = handleRatingSort(result);
         result = handlePlayersSort(result);
+        // na kraju Search filter
         result = filtersearchName(result);
         setFilteredGames(result);
     }, [checkedInputs, checkedTypes, checkedSorts, searchTerm]);

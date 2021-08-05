@@ -15,38 +15,75 @@ class UserForm extends React.Component {
         }
     }
     renderInput = ({ input, label, meta, type }) => { // (field)  je ovde input, a izvukli smo {input,label,meta,type}
-        console.log(input, 'input', label, 'label', meta, 'meta')
-        
+        // console.log(input, 'input', label, 'label', meta, 'meta')
+
         const className = `field ${meta.error && meta.touched ? "error" : ""}`;
 
         return (
             <div className={className}>
-            <label>{label}</label>
+                <label>{label}</label>
                 <input {...input} type={type} autoComplete="off" />
                 <div>{this.renderError(meta)}</div>
             </div>
-            
+
+        );
+    }
+    renderInputRadio = ({ input, label, meta, type }) => { // (field)  je ovde input, a izvukli smo {input,label,meta,type}
+        console.log(input, 'input')
+
+        return (
+            <div className="field">
+                <label>{label}</label>
+
+
+                <div className="field">
+
+                    <div className="ui radio checkbox">
+
+                        <label htmlFor="admin"><input name="role" type={type} id="admin" value="admin" />admin</label>
+                    </div>
+                </div>
+                <div className="field">
+                    <div className="ui radio checkbox">
+
+                        <label htmlFor="user"><input name="role" type={type} id="user" value="user" defaultChecked />user</label>
+                    </div>
+                </div>
+
+            </div>
         );
     }
 
     onSubmit = (formValues) => {
+        console.log(formValues, 'form values')
         this.props.onSubmit(formValues);
     }
-    
+
     render() {
-        console.log(this.props.handleSubmit, 'this.props.handleSubmit')
         return (
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
 
                 <Field type="number" name="id" component={this.renderInput} label="Enter: id" />
                 <Field name="name" component={this.renderInput} label="Enter: name" />
                 <Field name="password" component={this.renderInput} label="Enter: password" />
-                <Field name="role" component={this.renderInput} label="Enter role: if it is admin account type 'admin', if it is user leave it blank" />
+
+                <div className="field">
+                    <label>Select role: </label>
+
+                    <div className="field">
+                        <label><Field name="role" type="radio"  component="input" value="user" />user</label>
+                    </div>
+                    <div className="field">
+                        <label><Field name="role" type="radio"  component="input" value="admin" />admin</label>
+                    </div>
+                    
+                {/* <Field name="role" type="radio" component={this.renderInputRadio} /> */}
+                </div>
                 <button className="ui button primary">Submit</button>
             </form>
         );
     }
-    
+
 }
 
 const validate = (formValues) => {
@@ -71,7 +108,7 @@ const validate = (formValues) => {
 }
 
 
-export default reduxForm({ 
+export default reduxForm({
     form: "userForm",
     validate: validate
 })(UserForm);
