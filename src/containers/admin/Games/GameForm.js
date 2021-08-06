@@ -2,7 +2,6 @@
 import React from "react";
 import { Field, formValues, reduxForm } from "redux-form";
 
-
 class GameForm extends React.Component {
     renderError({ error, touched }) {
         if (touched && error) {

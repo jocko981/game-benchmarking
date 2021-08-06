@@ -16,7 +16,6 @@ class UserForm extends React.Component {
     }
     renderInput = ({ input, label, meta, type }) => { // (field)  je ovde input, a izvukli smo {input,label,meta,type}
         // console.log(input, 'input', label, 'label', meta, 'meta')
-
         const className = `field ${meta.error && meta.touched ? "error" : ""}`;
 
         return (
@@ -25,37 +24,11 @@ class UserForm extends React.Component {
                 <input {...input} type={type} autoComplete="off" />
                 <div>{this.renderError(meta)}</div>
             </div>
-
         );
     }
-    renderInputRadio = ({ input, label, meta, type }) => { // (field)  je ovde input, a izvukli smo {input,label,meta,type}
-        console.log(input, 'input')
-
-        return (
-            <div className="field">
-                <label>{label}</label>
-
-
-                <div className="field">
-
-                    <div className="ui radio checkbox">
-
-                        <label htmlFor="admin"><input name="role" type={type} id="admin" value="admin" />admin</label>
-                    </div>
-                </div>
-                <div className="field">
-                    <div className="ui radio checkbox">
-
-                        <label htmlFor="user"><input name="role" type={type} id="user" value="user" defaultChecked />user</label>
-                    </div>
-                </div>
-
-            </div>
-        );
-    }
+    // ideja !  - napravi 2 comp za 2 inputa
 
     onSubmit = (formValues) => {
-        console.log(formValues, 'form values')
         this.props.onSubmit(formValues);
     }
 
@@ -63,27 +36,33 @@ class UserForm extends React.Component {
         return (
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
 
-                <Field type="number" name="id" component={this.renderInput} label="Enter: id" />
-                <Field name="name" component={this.renderInput} label="Enter: name" />
-                <Field name="password" component={this.renderInput} label="Enter: password" />
+                <Field name="id" type="number" component={this.renderInput} label="Enter: id" />
+                <Field name="name" type="text" component={this.renderInput} label="Enter: name" />
+                <Field name="password" type="text" component={this.renderInput} label="Enter: password" />
 
                 <div className="field">
                     <label>Select role: </label>
 
                     <div className="field">
-                        <label><Field name="role" type="radio"  component="input" value="user" />user</label>
+                        <div className="ui radio checkbox">
+                            <Field name="role" type="radio" component="input" value="user" id="user" props={{ value: "user" }} />
+                            <label htmlFor="user">user</label>
+                        </div>
                     </div>
                     <div className="field">
-                        <label><Field name="role" type="radio"  component="input" value="admin" />admin</label>
+                        <div className="ui radio checkbox">
+                            <Field name="role" type="radio" component="input" value="admin" id="admin" />
+                            <label htmlFor="admin">admin</label>
+                        </div>
                     </div>
-                    
-                {/* <Field name="role" type="radio" component={this.renderInputRadio} /> */}
+
+                    {/* <Field name="role" type="radio" component={this.renderInputRadio} /> */}
                 </div>
+
                 <button className="ui button primary">Submit</button>
             </form>
         );
     }
-
 }
 
 const validate = (formValues) => {
@@ -103,12 +82,20 @@ const validate = (formValues) => {
     //     errors.role = msg;
     // }
     // ovo je conditional, admin accout ima 'role' a kod obicnog usera ne postoji 'role' keyvalue uopste
-
     return errors;
 }
 
+// const warn = values => {
+//     const warnings = {}
+//     if (values.age < 19) {
+//         warnings.age = 'Hmm, you seem a bit young...'
+//     }
+//     return warnings
+// } // we can also add warning
 
 export default reduxForm({
     form: "userForm",
-    validate: validate
+    initialValues: { role: "user" },
+    validate: validate,
+    // warn : ward // <--- warning function given to redux-form
 })(UserForm);
