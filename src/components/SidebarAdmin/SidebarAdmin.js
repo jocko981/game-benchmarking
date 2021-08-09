@@ -26,7 +26,7 @@ const SidebarAdmin = (props) => {
         <div className="sidebar-admin">
             <h1>ADMIN</h1>
             <p>{renderUsername()}</p>
-            
+            {/* Try this za CSS  -  loc.pathname.includes("/services/")    !!!!!!!! */}
             <Link to="/admin/games" className={path === '/admin/games' || path === '/admin/games/' ? 'active' : ''}><span>Games</span></Link>
             <Link to="/admin/users" className={path === '/admin/users' || path === '/admin/users/' ? 'active' : ''}><span>Users</span></Link>
 
