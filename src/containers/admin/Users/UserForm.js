@@ -29,7 +29,7 @@ class UserForm extends React.Component {
         }
     }
     renderWarn({ warning, submitFailed }) {
-        if (submitFailed) {
+        if (submitFailed && warning) {
             return (
                 <div className="ui yellow compact message">
                     <div className="header">

@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import history from "../../history";
 import "./ErrorPage404.css";
 
